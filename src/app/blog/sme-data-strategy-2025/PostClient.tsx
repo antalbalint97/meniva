@@ -1,8 +1,7 @@
 "use client";
 
 import Head from "next/head";
-import Post from "./content.mdx";
-import frontmatter from "./content.mdx";
+import Post, { frontmatter as fm } from "./content.mdx";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export default function PostClient() {
@@ -13,28 +12,28 @@ export default function PostClient() {
     <>
       {/* SEO + AI metadata */}
       <Head>
-        <title>{frontmatter.title} | Meniva</title>
-        <meta name="description" content={frontmatter.excerpt} />
+        <title>{fm.title} | Meniva</title>
+        <meta name="description" content={fm.excerpt} />
 
         {/* Open Graph */}
-        <meta property="og:title" content={frontmatter.title} />
-        <meta property="og:description" content={frontmatter.excerpt} />
+        <meta property="og:title" content={fm.title} />
+        <meta property="og:description" content={fm.excerpt} />
         <meta
           property="og:image"
-          content={frontmatter.coverImage || "/tree-abstract-mind.png"}
+          content={fm.coverImage || "/tree-abstract-mind.png"}
         />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="article:published_time" content={frontmatter.date} />
-        <meta property="article:author" content={frontmatter.author} />
+        <meta property="article:published_time" content={fm.date} />
+        <meta property="article:author" content={fm.author} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={frontmatter.title} />
-        <meta name="twitter:description" content={frontmatter.excerpt} />
+        <meta name="twitter:title" content={fm.title} />
+        <meta name="twitter:description" content={fm.excerpt} />
         <meta
           name="twitter:image"
-          content={frontmatter.coverImage || "/tree-abstract-mind.png"}
+          content={fm.coverImage || "/tree-abstract-mind.png"}
         />
 
         {/* Schema.org structured data */}
@@ -44,14 +43,14 @@ export default function PostClient() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Article",
-              headline: frontmatter.title,
-              description: frontmatter.excerpt,
+              headline: fm.title,
+              description: fm.excerpt,
               author: {
                 "@type": "Organization",
-                name: frontmatter.author,
+                name: fm.author,
               },
-              datePublished: frontmatter.date,
-              image: frontmatter.coverImage || "/tree-abstract-mind.png",
+              datePublished: fm.date,
+              image: fm.coverImage || "/tree-abstract-mind.png",
               publisher: {
                 "@type": "Organization",
                 name: "Meniva",
@@ -72,10 +71,10 @@ export default function PostClient() {
       {/* Blog layout */}
       <BlogArticleLayout
         meta={{
-          title: frontmatter.title,
-          author: frontmatter.author,
-          date: frontmatter.date,
-          readTime: frontmatter.readTime,
+          title: fm.title,
+          author: fm.author,
+          date: fm.date,
+          readTime: fm.readTime,
         }}
       >
         {/* Social share icons */}
@@ -108,7 +107,7 @@ export default function PostClient() {
 
           {/* Twitter/X */}
           <a
-            href={`https://twitter.com/intent/tweet?url=${url}&text=${frontmatter.title}`}
+            href={`https://twitter.com/intent/tweet?url=${url}&text=${fm.title}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Share on Twitter"

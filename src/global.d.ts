@@ -7,7 +7,9 @@ declare global {
 }
 
 declare module "*.mdx" {
-  let MDXComponent: (props: any) => JSX.Element;
+  import { ComponentType } from "react";
+
+  const MDXComponent: ComponentType<Record<string, unknown>>;
   export const frontmatter: Record<string, any>;
   export default MDXComponent;
 }
