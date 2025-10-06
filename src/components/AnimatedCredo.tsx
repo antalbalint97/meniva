@@ -54,7 +54,7 @@ export default function AnimatedCredo({
 
   const word = {
     hidden: { y: 8, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.35, ease: "easeOut" } },
+    show: { y: 0, opacity: 1, transition: { duration: 0.35, ease: "easeOut" as const } },
   };
 
   const line = {
@@ -62,7 +62,7 @@ export default function AnimatedCredo({
     lineShow: {
       width: underlineWidth,
       opacity: 1,
-      transition: { duration: 0.55, ease: "easeOut", delay: 0.1 },
+      transition: { duration: 0.55, ease: "easeOut" as const, delay: 0.1 },
     },
   };
 
