@@ -1,0 +1,8 @@
+# Redirect all www traffic to non-www
+https://meniva.net/* https://meniva.net/:splat 301!
+
+# Force HTTPS
+http://meniva.net/* https://meniva.net/:splat 301!
+
+# Catch-all (Next.js routing fallback)
+ /* /index.html 200
