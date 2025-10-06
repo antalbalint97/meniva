@@ -14,7 +14,7 @@ It showcases Meniva’s services, approach, and value proposition with a focus o
 
 ## Dev notes
 
-- All analytics events are tracked via /components/GA.ts.
+- All analytics events are tracked via `/components/GA.ts`.
 - The website is fully client-rendered and SEO-optimized.
 - Uses smooth animations and interaction highlights for better UX.
 
