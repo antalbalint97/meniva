@@ -8,6 +8,7 @@ import GA from "@/components/GA";
 import ConsentBanner from "@/components/ConsentBanner";
 import Footer from "@/components/Footer";
 import CampaignStrip from "@/components/CampaignStrip";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -146,7 +147,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black font-sans`}
       >
         {/* Global GA page tracking */}
-        <GA />
+        <Suspense fallback={null}>
+          <GA />
+        </Suspense>
 
         {/* Consent banner must load before any analytics */}
         <ConsentBanner />
