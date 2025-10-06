@@ -1,7 +1,9 @@
 "use client";
 
 import Head from "next/head";
-import Post, { frontmatter as fm } from "./content.mdx";
+// import Post, { frontmatter as fm } from "./content.mdx";
+import Post from "./content.mdx";
+const fm = (Post as any).frontmatter || {};
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export default function PostClient() {
