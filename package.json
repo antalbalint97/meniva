@@ -7,7 +7,6 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "mkdir -p .netlify/functions-internal/___netlify-server-handler",
     "build": "next build --no-lint && cp public/_redirects .next/_redirects",
     "postbuild": "next-sitemap",
     "start": "next start",
