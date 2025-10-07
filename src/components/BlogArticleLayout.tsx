@@ -8,9 +8,11 @@ export default function BlogArticleLayout({
     author?: string;
     date?: string;
     readTime?: string;
+    excerpt?: string;
+    coverImage?: string;
   };
 }) {
-  // Safely format the date
+  // Safely format date
   const formatDate = (date?: string) => {
     if (!date) return null;
     const parsed = Date.parse(date);
@@ -26,36 +28,23 @@ export default function BlogArticleLayout({
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
-      {/* Title + Meta info */}
-      <header>
+      {/* Title + optional excerpt */}
+      <header className="text-center mb-8">
         {meta.title && (
-          <h1 className="text-4xl font-extrabold tracking-tight mb-4 text-center">
+          <h1 className="text-4xl font-extrabold tracking-tight mb-4">
             {meta.title}
           </h1>
         )}
-
-        {(meta.author || formattedDate || meta.readTime) && (
-          <div className="flex justify-center items-center flex-wrap gap-2 text-gray-600 text-sm mb-8">
-            {meta.author && <span className="font-medium">{meta.author}</span>}
-
-            {meta.author && formattedDate && <span className="mx-1">·</span>}
-
-            {formattedDate && (
-              <time dateTime={meta.date}>{formattedDate}</time>
-            )}
-
-            {(formattedDate || meta.author) && meta.readTime && (
-              <span className="mx-1">·</span>
-            )}
-
-            {meta.readTime && <span>{meta.readTime}</span>}
-          </div>
+        {meta.excerpt && (
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            {meta.excerpt}
+          </p>
         )}
       </header>
 
       {/* CTA (top, under title) */}
       <aside
-        className="mt-6 mb-12 p-8 bg-gray-50 rounded-xl text-center shadow-sm"
+        className="mt-6 mb-8 p-8 bg-gray-50 rounded-xl text-center shadow-sm"
         aria-label="Call to action"
       >
         <h3 className="text-xl font-semibold mb-2">
@@ -71,6 +60,25 @@ export default function BlogArticleLayout({
           Book a Free Consultation
         </a>
       </aside>
+
+      {/* Author / Date / Read time (below CTA) */}
+      {(meta.author || formattedDate || meta.readTime) && (
+        <div className="flex justify-center items-center flex-wrap gap-2 text-gray-600 text-sm mb-10">
+          {meta.author && <span className="font-medium">{meta.author}</span>}
+
+          {meta.author && formattedDate && <span className="mx-1">·</span>}
+
+          {formattedDate && (
+            <time dateTime={meta.date}>{formattedDate}</time>
+          )}
+
+          {(formattedDate || meta.author) && meta.readTime && (
+            <span className="mx-1">·</span>
+          )}
+
+          {meta.readTime && <span>{meta.readTime}</span>}
+        </div>
+      )}
 
       {/* Post content */}
       <div
@@ -88,7 +96,7 @@ export default function BlogArticleLayout({
         {children}
       </div>
 
-      {/* CTA (bottom, only button) */}
+      {/* Bottom CTA */}
       <footer className="mt-12 text-center">
         <a
           href="/#contact"
