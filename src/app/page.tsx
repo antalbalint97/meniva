@@ -146,7 +146,7 @@ export default function Home() {
         {/* Hero */}
         <section
           className="relative flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-4 sm:px-6 lg:px-8 gap-10"
-          style={{ minHeight: `calc(100vh - ${NAV_HEIGHT + stripHeight}px)` }}
+          style={{ minHeight: `calc(100vh - ${NAV_HEIGHT}px)` }}
         >
           {/* Left text */}
           <div className="flex-1">
