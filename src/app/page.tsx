@@ -144,52 +144,50 @@ export default function Home() {
       <main className="min-h-screen bg-white text-black font-sans scroll-smooth scroll-p-28">
         {/* Hero */}
         <section
-          className="relative flex items-center"
+          className="relative flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-4 sm:px-6 lg:px-8 gap-10"
           style={{ minHeight: `calc(100vh - ${NAV_HEIGHT + stripHeight}px)` }}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid gap-y-10 gap-x-12 items-center lg:grid-cols-[minmax(360px,1fr)_minmax(360px,760px)]">
-            {/* Left */}
-            <div className="text-center lg:text-left">
-              <h1 className="font-extrabold leading-tight tracking-tight text-[clamp(2rem,5.5vw,4.5rem)]">
-                <span className="block">Meaningful Data</span>
-                <span className="block">
-                  Meaningful <span className="text-[#1E9EB8]">Growth</span>
-                </span>
-              </h1>
+          {/* Left text */}
+          <div className="flex-1">
+            <h1 className="font-extrabold leading-tight tracking-tight text-[clamp(2rem,5.5vw,4.5rem)]">
+              <span className="block">Meaningful Data</span>
+              <span className="block">
+                Meaningful <span className="text-[#1E9EB8]">Growth</span>
+              </span>
+            </h1>
 
-              <p className="mt-6 text-gray-600 max-w-[60ch] mx-auto lg:mx-0 text-[clamp(1rem,1.25vw,1.25rem)]">
-                From raw data to custom tools and business systems, Meniva delivers
-                end-to-end solutions that turn complexity into clarity and action. We
-                help SMEs across Europe implement business intelligence and AI strategies
-                that work.
-              </p>
+            <p className="mt-6 text-gray-600 max-w-[60ch] mx-auto lg:mx-0 text-[clamp(1rem,1.25vw,1.25rem)]">
+              From raw data to custom tools and business systems, Meniva delivers
+              end-to-end solutions that turn complexity into clarity and action.
+              We help SMEs across Europe implement business intelligence and AI strategies that work.
+            </p>
 
-              <div className="mt-8">
-                <a
-                  href="#services"
-                  data-gtag="cta"
-                  data-cta="explore_services"
-                  data-location="hero"
-                  className="inline-block bg-black text-white font-semibold px-6 py-3 rounded-md hover:bg-gray-800 transition text-[clamp(0.95rem,1vw,1.125rem)]"
-                >
-                  Explore Our Services
-                </a>
-              </div>
-            </div>
-
-            {/* Right */}
-            <div className="flex justify-center lg:justify-center">
-              <img
-                src="/meniva_website_logo_final.png"
-                alt="Abstract AI tree"
-                className="h-auto w-[min(92vw,1024px)] max-w-full"
-              />
+            <div className="mt-8">
+              <a
+                href="#services"
+                data-gtag="cta"
+                data-cta="explore_services"
+                data-location="hero"
+                className="inline-block bg-black text-white font-semibold px-6 py-3 rounded-md hover:bg-gray-800 transition text-[clamp(0.95rem,1vw,1.125rem)]"
+              >
+                Explore Our Services
+              </a>
             </div>
           </div>
 
-          {/* ScrollDown button fixed to bottom center of section */}
+          {/* Right image */}
+          <div className="flex justify-center flex-1">
+            <img
+              src="/meniva_website_logo_final.png"
+              alt="Abstract AI tree"
+              className="h-auto w-[min(80vw,420px)] sm:w-[min(70vw,560px)] max-w-full"
+            />
+          </div>
+
+          {/* ScrollDown button */}
           <ScrollDown target="#services" />
         </section>
+
 
         {/* Services */}
         <section id="services" className="scroll-mt-28 py-14">

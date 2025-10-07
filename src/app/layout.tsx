@@ -68,66 +68,66 @@ export default function RootLayout({
         {/* ---------- CTA & Outbound Link Tracking ---------- */}
         <Script id="ga4-link-tracking" strategy="afterInteractive">
           {`
-          (function(){
-            if (!window || typeof window.addEventListener !== 'function') return;
-            let lastHref = '';
-            let lastTs = 0;
+            (function(){
+              if (!window || typeof window.addEventListener !== 'function') return;
+              let lastHref = '';
+              let lastTs = 0;
 
-            document.addEventListener('click', function(e){
-              const t = e.target;
-              if (!t || !t.closest) return;
-              const el = t.closest('a, button, [data-gtag]');
-              if (!el || typeof window.gtag !== 'function') return;
+              document.addEventListener('click', function(e){
+                const t = e.target;
+                if (!t || !t.closest) return;
+                const el = t.closest('a, button, [data-gtag]');
+                if (!el || typeof window.gtag !== 'function') return;
 
-              const href = el.getAttribute('href') || '';
-              const domain = (el.hostname || '').replace(/^www\\./,'');
-              const locationName = el.getAttribute('data-location') || 'unknown';
-              const ts = Date.now();
+                const href = el.getAttribute('href') || '';
+                const domain = (el.hostname || '').replace(/^www\\./,'');
+                const locationName = el.getAttribute('data-location') || 'unknown';
+                const ts = Date.now();
 
-              // Deduplicate double clicks
-              if (href === lastHref && ts - lastTs < 800) return;
-              lastHref = href; lastTs = ts;
+                // Deduplicate double clicks
+                if (href === lastHref && ts - lastTs < 800) return;
+                lastHref = href; lastTs = ts;
 
-              // ---- CTA tracking ----
-              if (el.hasAttribute('data-gtag') && el.getAttribute('data-gtag') === 'cta') {
-                const ctaName = el.getAttribute('data-cta') || 'unknown_cta';
-                window.gtag('event', 'cta_click', {
-                  cta_name: ctaName,
-                  location: locationName
-                });
-                return;
-              }
-
-              // ---- Outbound link tracking ----
-              const isAnchor = el.tagName.toLowerCase() === 'a';
-              const sameHost = isAnchor && el.hostname === window.location.hostname;
-              if (isAnchor && !sameHost) {
-                const linkText = (el.textContent || '').trim().substring(0,80);
-                const sameTab = !el.target || el.target === '_self';
-
-                const eventParams = {
-                  link_url: href,
-                  link_domain: domain,
-                  link_text: linkText,
-                  location: locationName,
-                  transport_type: 'beacon'
-                };
-
-                if (sameTab) {
-                  e.preventDefault();
-                  window.gtag('event', 'outbound_click_custom', {
-                    ...eventParams,
-                    event_callback: function(){ document.location.href = href; }
+                // ---- CTA tracking ----
+                if (el.hasAttribute('data-gtag') && el.getAttribute('data-gtag') === 'cta') {
+                  const ctaName = el.getAttribute('data-cta') || 'unknown_cta';
+                  window.gtag('event', 'cta_click', {
+                    cta_name: ctaName,
+                    location: locationName
                   });
-                  setTimeout(function(){ document.location.href = href; }, 300);
-                } else {
-                  window.gtag('event', 'outbound_click_custom', eventParams);
+                  return;
                 }
-              }
-            }, true);
-          })();
+
+                // ---- Outbound link tracking ----
+                const isAnchor = el.tagName.toLowerCase() === 'a';
+                const sameHost = isAnchor && el.hostname === window.location.hostname;
+                if (isAnchor && !sameHost) {
+                  const linkText = (el.textContent || '').trim().substring(0,80);
+                  const sameTab = !el.target || el.target === '_self';
+
+                  const eventParams = {
+                    link_url: href,
+                    link_domain: domain,
+                    link_text: linkText,
+                    location: locationName,
+                    transport_type: 'beacon'
+                  };
+
+                  if (sameTab) {
+                    e.preventDefault();
+                    window.gtag('event', 'outbound_click_custom', {
+                      ...eventParams,
+                      event_callback: function(){ document.location.href = href; }
+                    });
+                    setTimeout(function(){ document.location.href = href; }, 300);
+                  } else {
+                    window.gtag('event', 'outbound_click_custom', eventParams);
+                  }
+                }
+              }, true);
+            })();
           `}
-          </Script>
+        </Script>
 
         {/* ---------- Microsoft Clarity (only after consent) ---------- */}
         <Script id="clarity-init" strategy="afterInteractive">
@@ -146,12 +146,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black font-sans`}
       >
-        {/* Global GA page tracking */}
+        {/* ---------- Global GA Page Tracking ---------- */}
         <Suspense fallback={null}>
           <GA />
         </Suspense>
 
-        {/* Consent banner must load before any analytics */}
+        {/* ---------- Consent Banner ---------- */}
         <ConsentBanner />
 
         {/* ---------- Header ---------- */}
@@ -167,7 +167,7 @@ export default function RootLayout({
               />
             </Link>
 
-            {/* Desktop navigation */}
+            {/* ---------- Desktop Navigation ---------- */}
             <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
               <a
                 href="/#contact"
@@ -185,19 +185,14 @@ export default function RootLayout({
               <a href="/#faq">FAQ</a>
             </nav>
 
-            {/* Mobile menu */}
+            {/* ---------- Mobile Menu ---------- */}
             <details className="md:hidden relative">
               <summary
                 className="list-none p-2 -mr-2 rounded-md border border-gray-300 flex items-center justify-center cursor-pointer"
                 aria-label="Open menu"
               >
                 <span className="sr-only">Open menu</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     d="M3 6h18M3 12h18M3 18h18"
                     stroke="currentColor"
@@ -207,7 +202,7 @@ export default function RootLayout({
                 </svg>
               </summary>
 
-              <div className="absolute right-4 mt-2 w-72 rounded-xl border bg-white shadow-xl p-4 flex flex-col space-y-4">
+              <div className="absolute right-0 left-0 mt-3 z-50 w-full border-t bg-white shadow-lg flex flex-col space-y-4 px-6 py-4 rounded-b-2xl">
                 <a
                   href="/#contact"
                   data-gtag="cta"
