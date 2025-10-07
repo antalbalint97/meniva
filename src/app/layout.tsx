@@ -186,37 +186,31 @@ export default function RootLayout({
             </nav>
 
             {/* ---------- Mobile Menu ---------- */}
-            <details className="md:hidden relative">
+            <details className="relative md:hidden">
               <summary
                 className="list-none p-2 -mr-2 rounded-md border border-gray-300 flex items-center justify-center cursor-pointer"
                 aria-label="Open menu"
               >
                 <span className="sr-only">Open menu</span>
                 <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M3 6h18M3 12h18M3 18h18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+                  <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </summary>
 
-              <div className="absolute right-0 left-0 mt-3 z-50 w-full border-t bg-white shadow-lg flex flex-col space-y-4 px-6 py-4 rounded-b-2xl">
+              <div className="absolute right-0 top-full mt-2 w-screen bg-white border-t shadow-lg p-6 rounded-b-2xl z-50">
                 <a
                   href="/#contact"
-                  data-gtag="cta"
-                  data-cta="book_consultation"
-                  data-location="navbar_mobile"
-                  className="rounded-lg bg-black px-4 py-3 text-white font-semibold text-center hover:bg-neutral-800 transition"
+                  className="block bg-black text-white text-center font-semibold px-4 py-3 rounded-md hover:bg-neutral-800 transition mb-3"
                 >
                   Book a Free Consultation
                 </a>
-                <a href="/#services" className="py-1">Services</a>
-                <a href="/#about" className="py-1">About</a>
-                <a href="/#blog" className="py-1">Blog</a>
-                <a href="/#contact" className="py-1">Contact</a>
-                <a href="/#faq" className="py-1">FAQ</a>
+                <nav className="flex flex-col space-y-3 text-gray-800 text-base">
+                  <a href="/#services">Services</a>
+                  <a href="/#about">About</a>
+                  <a href="/blog">Blog</a>
+                  <a href="/#contact">Contact</a>
+                  <a href="/#faq">FAQ</a>
+                </nav>
               </div>
             </details>
           </div>

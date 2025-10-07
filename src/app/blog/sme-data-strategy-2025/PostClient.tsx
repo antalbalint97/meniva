@@ -1,38 +1,49 @@
 "use client";
 
 import Head from "next/head";
-// import Post, { frontmatter as fm } from "./content.mdx";
 import Post from "./content.mdx";
-const fm = (Post as any).frontmatter || {};
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
+// Safely extract frontmatter
+const fm = (Post as any).frontmatter || {};
+
 export default function PostClient() {
-  const slug = "sme-data-strategy-2025"; // could also be dynamic
+  const slug = "sme-data-strategy-2025";
   const url = `https://meniva.net/blog/${slug}`;
+
+  // --- Safely format date for display ---
+  const formatDate = (date?: string) => {
+    if (!date) return "";
+    const parsed = Date.parse(date);
+    if (isNaN(parsed)) return "";
+    return new Date(parsed).toISOString(); // ISO for metadata
+  };
+
+  const safeDate = formatDate(fm.date);
 
   return (
     <>
-      {/* SEO + AI metadata */}
+      {/* SEO + Structured metadata */}
       <Head>
-        <title>{fm.title} | Meniva</title>
-        <meta name="description" content={fm.excerpt} />
+        <title>{fm.title ? `${fm.title} | Meniva` : "Meniva Blog"}</title>
+        <meta name="description" content={fm.excerpt || ""} />
 
         {/* Open Graph */}
-        <meta property="og:title" content={fm.title} />
-        <meta property="og:description" content={fm.excerpt} />
+        <meta property="og:title" content={fm.title || ""} />
+        <meta property="og:description" content={fm.excerpt || ""} />
         <meta
           property="og:image"
           content={fm.coverImage || "/tree-abstract-mind.png"}
         />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="article:published_time" content={fm.date} />
-        <meta property="article:author" content={fm.author} />
+        {safeDate && <meta property="article:published_time" content={safeDate} />}
+        {fm.author && <meta property="article:author" content={fm.author} />}
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={fm.title} />
-        <meta name="twitter:description" content={fm.excerpt} />
+        <meta name="twitter:title" content={fm.title || ""} />
+        <meta name="twitter:description" content={fm.excerpt || ""} />
         <meta
           name="twitter:image"
           content={fm.coverImage || "/tree-abstract-mind.png"}
@@ -45,13 +56,13 @@ export default function PostClient() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Article",
-              headline: fm.title,
-              description: fm.excerpt,
+              headline: fm.title || "",
+              description: fm.excerpt || "",
               author: {
                 "@type": "Organization",
-                name: fm.author,
+                name: fm.author || "Meniva Team",
               },
-              datePublished: fm.date,
+              datePublished: safeDate || "",
               image: fm.coverImage || "/tree-abstract-mind.png",
               publisher: {
                 "@type": "Organization",
@@ -70,16 +81,16 @@ export default function PostClient() {
         />
       </Head>
 
-      {/* Blog layout */}
+      {/* Blog Layout */}
       <BlogArticleLayout
         meta={{
-          title: fm.title,
-          author: fm.author,
-          date: fm.date,
-          readTime: fm.readTime,
+          title: fm.title || "",
+          author: fm.author || "Meniva Team",
+          date: fm.date || "",
+          readTime: fm.readTime || "",
         }}
       >
-        {/* Social share icons */}
+        {/* Social share buttons */}
         <div className="flex justify-center gap-6 mb-6 text-gray-600">
           {/* LinkedIn */}
           <a
@@ -107,9 +118,11 @@ export default function PostClient() {
             </svg>
           </a>
 
-          {/* Twitter/X */}
+          {/* Twitter / X */}
           <a
-            href={`https://twitter.com/intent/tweet?url=${url}&text=${fm.title}`}
+            href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
+              fm.title || ""
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Share on Twitter"
