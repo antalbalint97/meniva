@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "cd src && next build --no-lint && cp public/_redirects .next/_redirects",
+    "build": "next build --no-lint && cp src/public/_redirects src/.next/_redirects",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
