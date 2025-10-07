@@ -5,10 +5,6 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["next", "react", "react-dom", "sharp"]
-  included_files = ["src/**/*", "public/**/*"]
-
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP_FUNCTION_BUNDLING = "true"
+  NETLIFY_USE_LEGACY_NEXT_PLUGIN = "true"
