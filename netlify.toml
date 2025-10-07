@@ -7,4 +7,9 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["next", "react", "react-dom"]
+  included_files = ["src/**/*", "public/**/*"]
+  external_node_modules = ["next", "react", "react-dom", "sharp"]
+  included_files_base = "."
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP_FUNCTION_BUNDLING = "true"
