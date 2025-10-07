@@ -131,18 +131,18 @@ export default function BlogIndex() {
                 </h2>
 
                 {(post.date || post.readTime) && (
-                  <p className="text-gray-600 text-sm mb-2">
-                    {post.date && !isNaN(Date.parse(post.date))
-                      ? new Date(post.date).toLocaleDateString("en-GB", {
-                          day: "2-digit",
-                          month: "short",
-                          year: "numeric",
-                        })
-                      : ""}
-                    {post.date && post.readTime ? " · " : ""}
-                    {post.readTime}
-                  </p>
-                )}
+                <p className="text-gray-600 text-sm mb-2">
+                  {post.date && !isNaN(Date.parse(post.date))
+                    ? new Date(post.date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : ""}
+                  {post.date && post.readTime ? " · " : ""}
+                  {post.readTime}
+                </p>
+              )}
 
                 {post.excerpt && (
                   <p className="text-gray-700 mb-4">{post.excerpt}</p>

@@ -5,7 +5,8 @@ import Script from 'next/script';
 import ServicesFlow from '../components/ServicesFlow';
 import AnimatedCredo from '../components/AnimatedCredo';
 import FAQ from '../components/FAQ';
-import ConsentBanner from "../components/ConsentBanner"; 
+import ConsentBanner from "../components/ConsentBanner";
+import Image from "next/image";
 
 const NAV_HEIGHT = 72; // px
 
@@ -176,16 +177,18 @@ export default function Home() {
           </div>
 
           {/* Right image */}
-          <div className="flex justify-center flex-1">
-            <img
+          <div className="flex justify-center md:justify-end mt-8 md:mt-0 flex-1">
+            <Image
               src="/meniva_website_logo_final.png"
-              alt="Abstract AI tree"
-              className="h-auto w-[min(80vw,420px)] sm:w-[min(70vw,560px)] max-w-full"
+              alt="AI brain graphic"
+              width={640}
+              height={640}
+              priority
+              sizes="(max-width: 1024px) 80vw, 560px"
+              className="h-auto w-[80vw] max-w-[560px] md:w-[560px] object-contain"
             />
           </div>
-
-          {/* ScrollDown button */}
-          <ScrollDown target="#services" />
+                    
         </section>
 
 

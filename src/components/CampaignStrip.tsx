@@ -97,7 +97,9 @@ export default function CampaignStrip() {
   return (
     <div
       id="campaign-strip"
-      className="fixed top-[72px] left-0 w-full bg-[#1E9EB8] text-white px-4 py-3 shadow-md flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 z-40"
+      className="fixed top-[72px] left-0 w-full bg-[#1E9EB8] text-white 
+                py-2 md:py-3 px-3 md:px-4 shadow-md flex flex-col md:flex-row 
+                items-center justify-center gap-2 md:gap-4 z-40 text-sm md:text-base"
     >
       {!submitted ? (
         <>
