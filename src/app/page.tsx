@@ -177,15 +177,15 @@ export default function Home() {
           </div>
 
           {/* Right image */}
-          <div className="flex justify-center md:justify-end mt-8 md:mt-0 flex-1">
+          <div className="flex justify-center mt-8 md:mt-0 flex-1">
             <Image
-              src="/meniva_website_logo_final.png"
+              src="/meniva_website_logo_final.webp"
               alt="AI brain graphic"
               width={640}
               height={640}
               priority
               sizes="(max-width: 1024px) 80vw, 560px"
-              className="h-auto w-[80vw] max-w-[560px] md:w-[560px] object-contain"
+              className="h-auto w-[80vw] max-w-[800px] md:w-[800px] object-contain"
             />
           </div>
                     
