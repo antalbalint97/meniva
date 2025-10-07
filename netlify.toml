@@ -4,6 +4,7 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+  version = "5.14.0"
 
 [functions]
   node_bundler = "esbuild"
