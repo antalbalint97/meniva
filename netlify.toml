@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-  base = "src"
+  publish = "src/.next"
+  base = ""  # keep root as base, not src
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
