@@ -181,8 +181,8 @@ export default function Home() {
             <Image
               src="/meniva_website_logo_final_v2.png"
               alt="AI brain graphic"
-              width={640}
-              height={640}
+              width={820}
+              height={820}
               priority
               sizes="(max-width: 1024px) 80vw, 560px"
               className="h-auto w-[80vw] max-w-[800px] md:w-[800px] object-contain"
