@@ -179,7 +179,7 @@ export default function Home() {
           {/* Right image */}
           <div className="flex justify-center mt-8 md:mt-0 flex-1">
             <Image
-              src="/meniva_website_logo_final_v2.png"
+              src="/meniva_logo_final.svg"
               alt="AI brain graphic"
               width={820}
               height={820}
