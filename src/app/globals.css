@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ──────────────────────────────────────────────
+   Cyber-Enterprise Design Tokens
+   ────────────────────────────────────────────── */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -41,93 +45,253 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Cyber-Enterprise brand tokens */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-muted: var(--brand-muted);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
 }
 
+/* ──────────────────────────────────────────────
+   Light Theme — calm, professional, high-contrast
+   ────────────────────────────────────────────── */
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+
+  /* Core surfaces */
+  --background: #FAFBFC;
+  --foreground: #0F1419;
+  --card: #FFFFFF;
+  --card-foreground: #0F1419;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F1419;
+
+  /* Brand teal — used for CTAs and accents */
+  --brand: #1E9EB8;
+  --brand-foreground: #FFFFFF;
+  --brand-muted: #E8F6F9;
+
+  /* Elevated surface for subtle layering */
+  --surface: #F3F5F7;
+  --surface-foreground: #0F1419;
+
+  /* Primary = dark for solid buttons */
+  --primary: #0F1419;
+  --primary-foreground: #FAFBFC;
+
+  /* Secondary */
+  --secondary: #F3F5F7;
+  --secondary-foreground: #0F1419;
+
+  /* Muted */
+  --muted: #F3F5F7;
+  --muted-foreground: #5C6370;
+
+  /* Accent = brand tint for highlights */
+  --accent: #E8F6F9;
+  --accent-foreground: #0F1419;
+
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Borders & inputs */
+  --border: #E1E5EA;
+  --input: #E1E5EA;
+  --ring: #1E9EB8;
+
+  /* Charts */
+  --chart-1: #1E9EB8;
+  --chart-2: #0F1419;
+  --chart-3: #5C6370;
+  --chart-4: #177E95;
+  --chart-5: #A8D5E2;
+
+  /* Sidebar */
+  --sidebar: #FAFBFC;
+  --sidebar-foreground: #0F1419;
+  --sidebar-primary: #0F1419;
+  --sidebar-primary-foreground: #FAFBFC;
+  --sidebar-accent: #F3F5F7;
+  --sidebar-accent-foreground: #0F1419;
+  --sidebar-border: #E1E5EA;
+  --sidebar-ring: #1E9EB8;
+
+  /* Glow ring (subtle in light) */
+  --glow-color: rgba(30, 158, 184, 0.15);
+  --glow-color-hover: rgba(30, 158, 184, 0.3);
+
+  /* Grid background */
+  --grid-color: rgba(15, 20, 25, 0.04);
 }
 
+/* ──────────────────────────────────────────────
+   Dark Theme — deeper, more vibrant accents
+   ────────────────────────────────────────────── */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: #0B0E13;
+  --foreground: #E8ECEF;
+  --card: #13171E;
+  --card-foreground: #E8ECEF;
+  --popover: #13171E;
+  --popover-foreground: #E8ECEF;
+
+  --brand: #2BBAD6;
+  --brand-foreground: #0B0E13;
+  --brand-muted: rgba(43, 186, 214, 0.1);
+
+  --surface: #181D26;
+  --surface-foreground: #E8ECEF;
+
+  --primary: #E8ECEF;
+  --primary-foreground: #0B0E13;
+
+  --secondary: #1C222C;
+  --secondary-foreground: #E8ECEF;
+
+  --muted: #1C222C;
+  --muted-foreground: #8892A0;
+
+  --accent: rgba(43, 186, 214, 0.1);
+  --accent-foreground: #E8ECEF;
+
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+
+  --border: rgba(232, 236, 239, 0.08);
+  --input: rgba(232, 236, 239, 0.12);
+  --ring: #2BBAD6;
+
+  --chart-1: #2BBAD6;
+  --chart-2: #E8ECEF;
+  --chart-3: #8892A0;
+  --chart-4: #1E9EB8;
+  --chart-5: #177E95;
+
+  --sidebar: #0B0E13;
+  --sidebar-foreground: #E8ECEF;
+  --sidebar-primary: #2BBAD6;
+  --sidebar-primary-foreground: #0B0E13;
+  --sidebar-accent: #1C222C;
+  --sidebar-accent-foreground: #E8ECEF;
+  --sidebar-border: rgba(232, 236, 239, 0.08);
+  --sidebar-ring: #2BBAD6;
+
+  --glow-color: rgba(43, 186, 214, 0.1);
+  --glow-color-hover: rgba(43, 186, 214, 0.25);
+
+  --grid-color: rgba(232, 236, 239, 0.03);
 }
 
-/* @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
-
+/* ──────────────────────────────────────────────
+   Base Layer
+   ────────────────────────────────────────────── */
 @layer base {
   html {
-    font-size: 20px; /* bump base up from 16px */
+    font-size: 20px;
   }
 
   body {
     @apply bg-background text-foreground;
-    line-height: 1.7; /* better readability */
+    line-height: 1.7;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Typography Scale
+   heading-1 → heading-4, body-lg, body, body-sm
+   ────────────────────────────────────────────── */
+@layer utilities {
+  .heading-1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .heading-2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .heading-4 {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .body-lg {
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .body-sm {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Subtle Grid Background
+   Usage: class="grid-bg"
+   ────────────────────────────────────────────── */
+@layer utilities {
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .grid-bg-dense {
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Glow Hover Ring
+   Usage: class="glow-ring"
+   ────────────────────────────────────────────── */
+@layer utilities {
+  .glow-ring {
+    box-shadow: 0 0 0 1px var(--glow-color);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .glow-ring:hover,
+  .glow-ring:focus-within {
+    box-shadow: 0 0 0 1px var(--glow-color-hover), 0 0 20px var(--glow-color-hover);
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Section Spacing Utility
+   Usage: class="section-padding"
+   ────────────────────────────────────────────── */
+@layer utilities {
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
