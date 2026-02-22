@@ -54,7 +54,7 @@ export default function BlogArticleLayout({
         </p>
         <a
           href="/#contact"
-          className="inline-block rounded-lg bg-foreground px-6 py-3 font-semibold text-white transition hover:bg-foreground/90"
+          className="inline-block rounded-lg bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand/90"
         >
           Book a Free Consultation
         </a>
@@ -117,7 +117,7 @@ export default function BlogArticleLayout({
       <footer className="mt-12 text-center">
         <a
           href="/#contact"
-          className="inline-block rounded-lg bg-foreground px-6 py-3 font-semibold text-white transition hover:bg-foreground/90"
+          className="inline-block rounded-lg bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand/90"
         >
           {"Let's Talk Strategy"}
         </a>

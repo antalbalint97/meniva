@@ -5,7 +5,7 @@ import Script from "next/script";
 import GA from "@/components/GA";
 import ConsentBanner from "@/components/ConsentBanner";
 import Footer from "@/components/Footer";
-import CampaignStrip from "@/components/CampaignStrip";
+
 import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 
@@ -155,9 +155,6 @@ export default function RootLayout({
 
         {/* ---------- Header ---------- */}
         <Navbar />
-
-        {/* ---------- Campaign Strip ---------- */}
-        <CampaignStrip />
 
         {/* ---------- Main Content ---------- */}
         {children}

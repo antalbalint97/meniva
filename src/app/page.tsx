@@ -95,6 +95,57 @@ export default function Home() {
         {/* A) Hero */}
         <Hero />
 
+        {/* Newsletter */}
+        <section className="px-4 pt-10 pb-2">
+          <div className="mx-auto max-w-xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-center">
+            <p className="mb-3 text-sm font-medium text-foreground">
+              Stay ahead with data insights. Get free strategies & updates in your inbox.
+            </p>
+            <form
+              className="flex flex-col sm:flex-row items-center justify-center gap-2"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget as HTMLFormElement;
+                const fd = new FormData(form);
+                const email = fd.get('email');
+                try {
+                  const res = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                  });
+                  if (res.ok) {
+                    (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'newsletter_signup', {
+                      campaign_name: 'inline_newsletter',
+                      method: 'inline_card',
+                      location: 'below_hero',
+                    });
+                    window.location.href = '/thank-you-subscribe';
+                  } else {
+                    alert('Something went wrong. Please try again later.');
+                  }
+                } catch {
+                  alert('Failed to subscribe. Please try again later.');
+                }
+              }}
+            >
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Your email"
+                className="w-full sm:w-56 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/40"
+              />
+              <button
+                type="submit"
+                className="w-full sm:w-auto rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand/90"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </section>
+
         {/* B) Impact Metrics */}
         <section className="py-12 lg:py-16">
           <ImpactMetrics />
