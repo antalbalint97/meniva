@@ -5,6 +5,150 @@
     "blog": "Blog",
     "contact": "Contact",
     "faq": "FAQ",
-    "cta": "Book a Free Consultation"
+    "cta": "Book a Free Consultation",
+    "backToHome": "\u2190 Back to Home"
+  },
+  "hero": {
+    "badge": "DATA STRATEGY \u00b7 BI \u00b7 AI \u00b7 AUTOMATION",
+    "heading": "DATA & AI SYSTEMS FOR",
+    "headingAccent": "MODERN TEAMS",
+    "description": "We build data & AI systems that actually run your business. From analytics foundations to production-ready machine learning and custom internal tools, Meniva helps growing companies turn scattered data into reliable systems that drive decisions and revenue.",
+    "cta": "View Demos"
+  },
+  "metrics": {
+    "revenueScale": "\u20ac1.85B",
+    "revenueScaleLabel": "Revenue scale supported",
+    "costReduction": "~\u20ac250k",
+    "costReductionLabel": "Annual cost reduction delivered",
+    "revenueUplift": "~\u20ac850k",
+    "revenueUpliftLabel": "Revenue uplift delivered",
+    "hoursSaved": "~40 hrs/yr",
+    "hoursSavedLabel": "Saved via automation"
+  },
+  "services": {
+    "heading": "Service Modules",
+    "description": "End-to-end data and AI capabilities, delivered as focused engagements with clear scope and measurable outcomes.",
+    "discuss": "Discuss this \u2192",
+    "pillars": {
+      "dataFoundations": {
+        "title": "Data Foundations & Analytics",
+        "description": "We design scalable data architectures and reporting systems that give leadership the clarity they need to act.",
+        "bullets": [
+          "Data strategy & architecture",
+          "KPI frameworks & data modeling",
+          "BI dashboards (Power BI, Tableau, Looker)",
+          "SQL analytics & ad-hoc reporting"
+        ]
+      },
+      "biDashboards": {
+        "title": "BI & Executive Dashboards",
+        "description": "Interactive dashboards and self-service analytics that connect to live data and update automatically.",
+        "bullets": [
+          "Power BI / Tableau / Looker builds",
+          "Executive & operational dashboards",
+          "Automated reporting pipelines",
+          "Self-service analytics layers"
+        ]
+      },
+      "mlForecasting": {
+        "title": "ML & Forecasting",
+        "description": "From demand forecasting to churn prediction, we build ML systems that solve concrete business problems and run in production.",
+        "bullets": [
+          "Demand & sales forecasting",
+          "Churn & retention models",
+          "Pricing optimization",
+          "Recommendation systems",
+          "MLOps pipelines"
+        ]
+      },
+      "aiAutomation": {
+        "title": "AI Automation & Agentic Systems",
+        "description": "LLM-powered agents, automated workflows, and custom internal tools that replace manual busywork.",
+        "bullets": [
+          "LLM & agent-based systems",
+          "Lead scoring & qualification engines",
+          "Automated data collection & ETL",
+          "Custom Streamlit / Dash apps",
+          "Internal productivity tools"
+        ]
+      }
+    }
+  },
+  "tech": {
+    "heading": "Technologies We Work With",
+    "tabs": {
+      "languages": "Languages & Analytics",
+      "bi": "Visualization & BI",
+      "ml": "Machine Learning & AI",
+      "cloud": "Cloud & Infrastructure",
+      "data": "Data Collection",
+      "delivery": "Delivery & Collaboration"
+    }
+  },
+  "demos": {
+    "heading": "Demos & References",
+    "description": "Explore selected systems we've built \u2014 real solutions solving real business problems.",
+    "openDemo": "Open Demo",
+    "comingSoon": "Coming Soon",
+    "live": "Live",
+    "pageHeading": "Demos",
+    "pageDescription": "Explore live demos and proof-of-concept tools built during real client projects. Click any demo to see it in action."
+  },
+  "blog": {
+    "heading": "Latest Insights",
+    "description": "Practical articles on data strategy and AI for SMEs.",
+    "readMore": "Read more \u2192",
+    "comingSoonTitle": "Coming Soon: More Insights",
+    "comingSoonDescription": "Stay tuned for upcoming articles about business intelligence, AI adoption, and practical data strategies for SMEs.",
+    "indexHeading": "Blog",
+    "noPosts": "No posts yet. Check back soon!"
+  },
+  "contact": {
+    "heading": "Let's Talk Data",
+    "description": "Whether you need a quick audit or a full AI deployment, we start every engagement with a conversation.",
+    "noObligation": "No obligation",
+    "noObligationDesc": "Free 30-minute discovery call to understand your needs.",
+    "tailoredAdvice": "Tailored advice",
+    "tailoredAdviceDesc": "We assess your data maturity and propose a realistic roadmap.",
+    "fastTurnaround": "Fast turnaround",
+    "fastTurnaroundDesc": "First results in as little as 2-3 weeks.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your data challenge...",
+    "replyNote": "We reply within 48 hours.",
+    "submit": "Send Message",
+    "errorGeneric": "Something went wrong. Please try again later.",
+    "errorNetwork": "Failed to send message. Please try again later."
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions"
+  },
+  "footer": {
+    "tagline": "Turning complexity into clarity.",
+    "privacyPolicy": "Privacy Policy",
+    "cookieSettings": "Cookie Settings",
+    "location": "Budapest, Hungary"
+  },
+  "consent": {
+    "heading": "Cookie & Analytics Consent",
+    "description": "We use cookies and analytics to improve your experience.\nYou can choose to accept or deny analytics tracking.",
+    "learnMore": "Learn more",
+    "deny": "Deny",
+    "accept": "Accept"
+  },
+  "blogArticle": {
+    "ctaHeading": "Ready to take the next step in your data journey?",
+    "ctaDescription": "Contact Meniva today for a tailored data strategy consultation.",
+    "ctaButton": "Book a Free Consultation",
+    "bottomCta": "Let's Talk Strategy",
+    "newsletterText": "Stay ahead with data insights. Get free strategies & updates in your inbox.",
+    "newsletterPlaceholder": "Your email",
+    "newsletterButton": "Subscribe"
+  },
+  "common": {
+    "meniva": "Meniva"
   }
 }

@@ -1,8 +1,10 @@
-// src/app/blog/page.tsx
+// src/app/[locale]/blog/page.tsx
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
+import { getDictionary } from "@/i18n/getDictionary";
+import { isLocale, defaultLocale } from "@/i18n/locales";
 
 type FrontMatter = {
   title?: string;
@@ -102,16 +104,19 @@ function getPosts(): PostMeta[] {
   return posts;
 }
 
-export default function BlogIndex() {
+export default async function BlogIndex({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const safeLocale = isLocale(locale) ? locale : defaultLocale;
+  const t = await getDictionary(safeLocale);
   const posts = getPosts();
 
   return (
     <main className="bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-bold mb-10">Blog</h1>
+        <h1 className="text-4xl font-bold mb-10">{t.blog.indexHeading}</h1>
 
         {posts.length === 0 ? (
-          <p className="text-gray-600">No posts yet. Check back soon!</p>
+          <p className="text-gray-600">{t.blog.noPosts}</p>
         ) : (
           <div className="space-y-8">
             {posts.map((post) => (
@@ -154,7 +159,7 @@ export default function BlogIndex() {
                              underline-offset-4 hover:underline rounded-sm
                              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E9EB8]/40"
                 >
-                  Read more →
+                  {t.blog.readMore}
                 </Link>
               </article>
             ))}

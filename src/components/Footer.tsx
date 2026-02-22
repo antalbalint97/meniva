@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useDictionary } from "@/i18n/DictionaryContext";
 
 export default function Footer({ locale }: { locale?: string }) {
   const currentLocale = locale ?? "en";
+  const t = useDictionary();
 
   const handleResetConsent = () => {
     localStorage.removeItem("consent");
@@ -19,10 +21,10 @@ export default function Footer({ locale }: { locale?: string }) {
         {/* Left */}
         <div>
           <p className="text-sm font-bold uppercase tracking-wider text-foreground">
-            Meniva
+            {t.common.meniva}
           </p>
           <p className="mt-1 body-sm text-muted-foreground">
-            Turning complexity into clarity.
+            {t.footer.tagline}
           </p>
 
           <div className="mt-4 flex flex-col gap-1">
@@ -30,13 +32,13 @@ export default function Footer({ locale }: { locale?: string }) {
               href={`/${currentLocale}/privacy`}
               className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
             >
-              Privacy Policy
+              {t.footer.privacyPolicy}
             </Link>
             <button
               onClick={handleResetConsent}
               className="text-left text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
             >
-              Cookie Settings
+              {t.footer.cookieSettings}
             </button>
           </div>
         </div>
@@ -50,7 +52,7 @@ export default function Footer({ locale }: { locale?: string }) {
             info@meniva.net
           </a>
           <p className="mt-1 text-sm text-muted-foreground">
-            Budapest, Hungary
+            {t.footer.location}
           </p>
 
           <div className="mt-4 flex gap-4 md:justify-end">

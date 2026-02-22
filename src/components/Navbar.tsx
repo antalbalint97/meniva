@@ -6,25 +6,25 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { locales, type Locale } from "@/i18n/locales";
-
-const links = [
-  { label: "Services", hash: "#services" },
-  { label: "Demos", hash: "#demos" },
-  { label: "Blog", hash: "#blog" },
-  { label: "Contact", hash: "#contact" },
-  { label: "FAQ", hash: "#faq" },
-];
+import { useDictionary } from "@/i18n/DictionaryContext";
 
 export default function Navbar({ locale }: { locale?: string }) {
   const [open, setOpen] = useState(false);
   const currentLocale = (locale ?? "en") as Locale;
   const pathname = usePathname();
+  const t = useDictionary();
 
-  /** Build the equivalent path for another locale */
+  const links = [
+    { label: t.nav.services, hash: "#services" },
+    { label: t.nav.demos, hash: "#demos" },
+    { label: t.nav.blog, hash: "#blog" },
+    { label: t.nav.contact, hash: "#contact" },
+    { label: t.nav.faq, hash: "#faq" },
+  ];
+
   function switchedPath(target: Locale) {
-    // pathname looks like /en/blog/foo or /hu
     const segments = pathname.split("/");
-    segments[1] = target; // replace locale segment
+    segments[1] = target;
     return segments.join("/") || `/${target}`;
   }
 
@@ -37,9 +37,8 @@ export default function Navbar({ locale }: { locale?: string }) {
             src="/logo-meniva-kek.png"
             alt="Meniva logo - data and AI consultancy for SMEs"
             width={120}
-            height={50}
-            className="h-auto cursor-pointer"
-            style={{ width: "auto" }}
+            height={36}
+            className="h-8 w-auto cursor-pointer"
           />
         </Link>
 
@@ -65,7 +64,7 @@ export default function Navbar({ locale }: { locale?: string }) {
             data-location="navbar"
           >
             <Button intent="accent" size="md">
-              Book a Free Consultation
+              {t.nav.cta}
             </Button>
           </a>
 
@@ -153,7 +152,7 @@ export default function Navbar({ locale }: { locale?: string }) {
               onClick={() => setOpen(false)}
             >
               <Button intent="accent" size="lg" full>
-                Book a Free Consultation
+                {t.nav.cta}
               </Button>
             </a>
 

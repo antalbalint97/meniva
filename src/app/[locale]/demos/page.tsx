@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import type { Metadata } from "next";
+import { getDictionary } from "@/i18n/getDictionary";
+import { isLocale, defaultLocale } from "@/i18n/locales";
 
 export const metadata: Metadata = {
   title: "Demos | Meniva",
@@ -43,7 +45,10 @@ const demos = [
   },
 ];
 
-export default function DemosPage() {
+export default async function DemosPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const safeLocale = isLocale(locale) ? locale : defaultLocale;
+  const t = await getDictionary(safeLocale);
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#F2FAFB] via-background to-background font-sans text-foreground">
       <div className="section-container py-20 lg:py-28">

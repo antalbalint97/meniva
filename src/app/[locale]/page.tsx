@@ -9,6 +9,7 @@ import DemoShowcase from '@/components/DemoShowcase';
 import ContactSection from '@/components/ContactSection';
 import FAQ from '@/components/FAQ';
 import { Card, CardContent } from '@/components/ui/Card';
+import { useDictionary } from '@/i18n/DictionaryContext';
 
 const faqs = [
   {
@@ -44,6 +45,7 @@ const faqs = [
 ];
 
 export default function Home() {
+  const t = useDictionary();
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -125,9 +127,9 @@ export default function Home() {
         <section id="blog" className="scroll-mt-28 py-16 lg:py-20">
           <div className="section-container">
             <div className="text-center">
-              <h2 className="heading-2 text-foreground">Latest Insights</h2>
+              <h2 className="heading-2 text-foreground">{t.blog.heading}</h2>
               <p className="body-lg mx-auto mt-2 max-w-[44ch] text-muted-foreground">
-                Practical articles on data strategy and AI for SMEs.
+                {t.blog.description}
               </p>
             </div>
 
@@ -150,7 +152,7 @@ export default function Home() {
                       Learn how SMEs can stay competitive with the right strategy.
                     </p>
                     <span className="mt-1 text-sm font-medium text-brand">
-                      {"Read more \u2192"}
+                      {t.blog.readMore}
                     </span>
                   </CardContent>
                 </Card>
@@ -167,14 +169,13 @@ export default function Home() {
                 <Card className="h-full transition-shadow group-hover:shadow-md">
                   <CardContent className="flex flex-col gap-2">
                     <h3 className="heading-4 text-foreground group-hover:text-brand transition-colors">
-                      Coming Soon: More Insights
+                      {t.blog.comingSoonTitle}
                     </h3>
                     <p className="body-sm text-muted-foreground">
-                      Stay tuned for upcoming articles about business intelligence,
-                      AI adoption, and practical data strategies for SMEs.
+                      {t.blog.comingSoonDescription}
                     </p>
                     <span className="mt-1 text-sm font-medium text-brand">
-                      {"Read more \u2192"}
+                      {t.blog.readMore}
                     </span>
                   </CardContent>
                 </Card>

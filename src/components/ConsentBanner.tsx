@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useDictionary } from '@/i18n/DictionaryContext';
 
 export default function ConsentBanner() {
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
+  const t = useDictionary();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -78,12 +80,10 @@ export default function ConsentBanner() {
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
       <div className="bg-white text-gray-800 p-8 rounded-xl shadow-xl max-w-xl w-full mx-4 border-2 border-[#1E9EB8]">
         <h2 className="text-xl font-semibold mb-4 text-center text-[#1E9EB8]">
-          Cookie & Analytics Consent
+          {t.consent.heading}
         </h2>
-        <p className="text-base mb-4 text-center">
-          We use cookies and analytics to improve your experience.
-          <br />
-          You can choose to accept or deny analytics tracking.
+        <p className="text-base mb-4 text-center whitespace-pre-line">
+          {t.consent.description}
         </p>
         <div className="text-center mb-6">
           <Link
@@ -100,7 +100,7 @@ export default function ConsentBanner() {
             }}
             className="text-[#1E9EB8] font-medium hover:underline"
           >
-            Learn more
+            {t.consent.learnMore}
           </Link>
         </div>
         <div className="flex justify-center gap-4">
@@ -108,13 +108,13 @@ export default function ConsentBanner() {
             onClick={() => handleChoice(false)}
             className="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-base font-medium text-gray-800 transition"
           >
-            Deny
+            {t.consent.deny}
           </button>
           <button
             onClick={() => handleChoice(true)}
             className="px-6 py-2 rounded-lg bg-[#1E9EB8] hover:bg-[#178194] text-base font-semibold text-white transition"
           >
-            Accept
+            {t.consent.accept}
           </button>
         </div>
       </div>

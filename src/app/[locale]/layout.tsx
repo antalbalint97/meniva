@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/getDictionary";
+import { DictionaryProvider } from "@/i18n/DictionaryContext";
 import { notFound } from "next/navigation";
 
 const geistSans = Geist({
@@ -57,6 +59,8 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) {
     notFound();
   }
+
+  const dictionary = await getDictionary(locale);
 
   return (
     <html lang={locale}>
@@ -163,9 +167,11 @@ export default async function LocaleLayout({
           <GA />
         </Suspense>
         <ConsentBanner />
-        <Navbar locale={locale} />
-        {children}
-        <Footer locale={locale} />
+        <DictionaryProvider dictionary={dictionary}>
+          <Navbar locale={locale} />
+          {children}
+          <Footer locale={locale} />
+        </DictionaryProvider>
       </body>
     </html>
   );

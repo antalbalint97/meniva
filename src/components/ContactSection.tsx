@@ -2,49 +2,51 @@
 
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea, Label } from '@/components/ui/Input';
-
-const benefits = [
-  {
-    icon: (
-      <svg className="h-5 w-5 text-brand" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <line x1="10" y1="5" x2="10" y2="15" /><line x1="5" y1="10" x2="15" y2="10" />
-      </svg>
-    ),
-    title: 'No obligation',
-    description: 'Free 30-minute discovery call to understand your needs.',
-  },
-  {
-    icon: (
-      <svg className="h-5 w-5 text-brand" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M4.5 10.5l4 4 7-9" />
-      </svg>
-    ),
-    title: 'Tailored advice',
-    description: 'We assess your data maturity and propose a realistic roadmap.',
-  },
-  {
-    icon: (
-      <svg className="h-5 w-5 text-brand" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <circle cx="10" cy="10" r="7" /><path d="M10 6v4l3 2" />
-      </svg>
-    ),
-    title: 'Fast turnaround',
-    description: 'First results in as little as 2-3 weeks.',
-  },
-];
+import { useDictionary } from '@/i18n/DictionaryContext';
 
 export default function ContactSection() {
+  const t = useDictionary();
+
+  const benefits = [
+    {
+      icon: (
+        <svg className="h-5 w-5 text-brand" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <line x1="10" y1="5" x2="10" y2="15" /><line x1="5" y1="10" x2="15" y2="10" />
+        </svg>
+      ),
+      title: t.contact.noObligation,
+      description: t.contact.noObligationDesc,
+    },
+    {
+      icon: (
+        <svg className="h-5 w-5 text-brand" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M4.5 10.5l4 4 7-9" />
+        </svg>
+      ),
+      title: t.contact.tailoredAdvice,
+      description: t.contact.tailoredAdviceDesc,
+    },
+    {
+      icon: (
+        <svg className="h-5 w-5 text-brand" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="10" cy="10" r="7" /><path d="M10 6v4l3 2" />
+        </svg>
+      ),
+      title: t.contact.fastTurnaround,
+      description: t.contact.fastTurnaroundDesc,
+    },
+  ];
+
   return (
     <div>
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
         {/* Left: CTA block */}
         <div className="flex flex-1 flex-col justify-center">
           <h2 className="heading-2 text-foreground">
-            {"Let's Talk Data"}
+            {t.contact.heading}
           </h2>
           <p className="body-lg mt-3 max-w-[48ch] text-muted-foreground">
-            Whether you need a quick audit or a full AI deployment, we start
-            every engagement with a conversation.
+            {t.contact.description}
           </p>
 
           <div className="mt-8 flex flex-col gap-5">
@@ -101,31 +103,31 @@ export default function ContactSection() {
                       window.location.href = '/thank-you';
                     }, 150);
                   } else {
-                    alert('Something went wrong. Please try again later.');
+                    alert(t.contact.errorGeneric);
                   }
                 } catch (err) {
                   console.error('Contact form error:', err);
-                  alert('Failed to send message. Please try again later.');
+                  alert(t.contact.errorNetwork);
                 }
               }}
             >
               <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" required placeholder="Your name" />
+                <Label htmlFor="name">{t.contact.nameLabel}</Label>
+                <Input id="name" name="name" required placeholder={t.contact.namePlaceholder} />
               </div>
 
               <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" required placeholder="you@company.com" />
+                <Label htmlFor="email">{t.contact.emailLabel}</Label>
+                <Input id="email" name="email" type="email" required placeholder={t.contact.emailPlaceholder} />
               </div>
 
               <div>
-                <Label htmlFor="message">Message</Label>
-                <Textarea id="message" name="message" rows={4} required placeholder="Tell us about your data challenge..." />
+                <Label htmlFor="message">{t.contact.messageLabel}</Label>
+                <Textarea id="message" name="message" rows={4} required placeholder={t.contact.messagePlaceholder} />
               </div>
 
               <p className="body-sm text-center text-muted-foreground italic">
-                We reply within 48 hours.
+                {t.contact.replyNote}
               </p>
 
               <Button
@@ -137,7 +139,7 @@ export default function ContactSection() {
                 data-cta="contact_form_submit"
                 data-location="contact_section"
               >
-                Send Message
+                {t.contact.submit}
               </Button>
             </form>
           </div>

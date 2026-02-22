@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { useDictionary } from "@/i18n/DictionaryContext";
 
 const demos = [
   {
@@ -40,15 +43,16 @@ const demos = [
 ];
 
 export default function DemoShowcase() {
+  const t = useDictionary();
+
   return (
     <>
       <div className="text-center">
         <h2 className="heading-2 text-foreground text-balance">
-          Demos & References
+          {t.demos.heading}
         </h2>
         <p className="body-lg mx-auto mt-3 max-w-[52ch] text-muted-foreground">
-          Explore selected systems we{"'"}ve built — real solutions solving real
-          business problems.
+          {t.demos.description}
         </p>
       </div>
 
@@ -65,7 +69,6 @@ export default function DemoShowcase() {
               {...wrapperProps}
               className="group flex flex-col gap-4 rounded-xl border border-border bg-white p-5 shadow-sm transition-shadow hover:shadow-md sm:flex-row sm:items-center sm:gap-6"
             >
-              {/* Text + tags */}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span
@@ -77,7 +80,7 @@ export default function DemoShowcase() {
                   </span>
                   {isLive && (
                     <span className="rounded-full bg-brand/10 px-2.5 py-0.5 text-xs font-semibold text-brand">
-                      Live
+                      {t.demos.live}
                     </span>
                   )}
                 </div>
@@ -94,15 +97,14 @@ export default function DemoShowcase() {
                 </div>
               </div>
 
-              {/* Right: action */}
               <div className="shrink-0">
                 {isLive ? (
                   <Button intent="ghost" size="sm" className="pointer-events-none">
-                    Open Demo
+                    {t.demos.openDemo}
                   </Button>
                 ) : (
                   <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                    Coming Soon
+                    {t.demos.comingSoon}
                   </span>
                 )}
               </div>
