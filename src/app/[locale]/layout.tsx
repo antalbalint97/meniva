@@ -166,8 +166,8 @@ export default async function LocaleLayout({
         <Suspense fallback={null}>
           <GA />
         </Suspense>
-        <ConsentBanner />
         <DictionaryProvider dictionary={dictionary}>
+          <ConsentBanner />
           <Navbar locale={locale} />
           {children}
           <Footer locale={locale} />

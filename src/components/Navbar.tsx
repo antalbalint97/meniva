@@ -38,7 +38,9 @@ export default function Navbar({ locale }: { locale?: string }) {
             alt="Meniva logo - data and AI consultancy for SMEs"
             width={120}
             height={36}
-            className="h-8 w-auto cursor-pointer"
+            className="h-8 cursor-pointer"
+            style={{ width: "auto", height: "auto" }}
+            priority
           />
         </Link>
 

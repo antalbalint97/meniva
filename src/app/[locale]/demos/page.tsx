@@ -57,14 +57,13 @@ export default async function DemosPage({ params }: { params: Promise<{ locale: 
             href="/"
             className="body-sm font-medium text-brand hover:underline"
           >
-            &larr; Back to Home
+            {t.nav.backToHome}
           </Link>
         </div>
 
-        <h1 className="heading-1 text-foreground">Demos</h1>
+        <h1 className="heading-1 text-foreground">{t.demos.pageHeading}</h1>
         <p className="body-lg mt-4 max-w-[52ch] text-muted-foreground">
-          Explore live demos and proof-of-concept tools built during real client
-          projects. Click any demo to see it in action.
+          {t.demos.pageDescription}
         </p>
 
         <div className="mt-14 flex flex-col gap-5">
@@ -80,11 +79,11 @@ export default async function DemosPage({ params }: { params: Promise<{ locale: 
                     <h2 className="heading-3 text-foreground">{demo.title}</h2>
                     {isLive ? (
                       <span className="rounded-full bg-brand/10 px-2.5 py-0.5 text-xs font-semibold text-brand">
-                        Live
+                        {t.demos.live}
                       </span>
                     ) : (
                       <span className="rounded-full bg-surface px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
-                        Coming Soon
+                        {t.demos.comingSoon}
                       </span>
                     )}
                   </div>
@@ -107,12 +106,12 @@ export default async function DemosPage({ params }: { params: Promise<{ locale: 
                   {isLive ? (
                     <Link href={`/demos/${demo.slug}`}>
                       <Button intent="accent" size="lg">
-                        Open Demo
+                        {t.demos.openDemo}
                       </Button>
                     </Link>
                   ) : (
                     <Button intent="subtle" size="lg" disabled>
-                      Coming Soon
+                      {t.demos.comingSoon}
                     </Button>
                   )}
                 </div>
