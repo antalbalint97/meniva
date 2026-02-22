@@ -1,63 +1,90 @@
 const pillars = [
   {
+    icon: (
+      <svg className="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+      </svg>
+    ),
     title: "Data Foundations & Analytics",
     description:
       "We design scalable data architectures and reporting systems that give leadership the clarity they need to act.",
-    outcomes: [
+    bullets: [
       "Data strategy & architecture",
-      "KPI frameworks",
-      "Data modeling",
+      "KPI frameworks & data modeling",
       "BI dashboards (Power BI, Tableau, Looker)",
-      "SQL analytics",
+      "SQL analytics & ad-hoc reporting",
     ],
   },
   {
-    title: "Data Engineering & Automation",
+    icon: (
+      <svg className="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8" /><path d="M12 17v4" />
+      </svg>
+    ),
+    title: "BI & Executive Dashboards",
     description:
-      "Reliable pipelines and automation that keep your data flowing, validated, and warehouse-ready without manual intervention.",
-    outcomes: [
-      "ETL / ELT pipelines",
-      "PySpark & Spark jobs",
-      "Data validation & monitoring",
-      "Cloud data warehouses",
-      "Workflow orchestration",
-      "Custom automation tools",
+      "Interactive dashboards and self-service analytics that connect to live data and update automatically.",
+    bullets: [
+      "Power BI / Tableau / Looker builds",
+      "Executive & operational dashboards",
+      "Automated reporting pipelines",
+      "Self-service analytics layers",
     ],
   },
   {
-    title: "Machine Learning & AI Systems",
+    icon: (
+      <svg className="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93" /><path d="M8.24 4.47A4 4 0 0 1 12 2" /><path d="M12 9v13" /><path d="M4.5 15.5l3-3" /><path d="M19.5 15.5l-3-3" /><path d="M8 19l4-4 4 4" />
+      </svg>
+    ),
+    title: "ML & Forecasting",
     description:
-      "From forecasting to LLM-powered agents, we build ML systems that solve concrete business problems and run in production.",
-    outcomes: [
-      "Forecasting",
+      "From demand forecasting to churn prediction, we build ML systems that solve concrete business problems and run in production.",
+    bullets: [
+      "Demand & sales forecasting",
       "Churn & retention models",
-      "Pricing & optimization models",
+      "Pricing optimization",
       "Recommendation systems",
-      "LLM & agent-based systems",
       "MLOps pipelines",
     ],
   },
   {
-    title: "Custom Internal Tools & Products",
+    icon: (
+      <svg className="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    title: "AI Automation & Agentic Systems",
     description:
-      "We ship the internal apps and dashboards your team actually uses -- from quick Streamlit prototypes to full productized software.",
-    outcomes: [
-      "Dash / Streamlit apps",
-      "Internal dashboards",
-      "Custom web tools",
-      "Productized internal software (e.g., LeadPilot)",
+      "LLM-powered agents, automated workflows, and custom internal tools that replace manual busywork.",
+    bullets: [
+      "LLM & agent-based systems",
+      "Lead scoring & qualification engines",
+      "Automated data collection & ETL",
+      "Custom Streamlit / Dash apps",
+      "Internal productivity tools",
     ],
   },
 ];
+
+function CheckIcon() {
+  return (
+    <svg className="mt-0.5 h-4 w-4 shrink-0 text-brand" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export default function ServicesGrid() {
   return (
     <>
       <div className="text-center">
-        <h2 className="heading-2 text-foreground text-balance">How We Help</h2>
+        <h2 className="heading-2 text-foreground text-balance">
+          Service Modules
+        </h2>
         <p className="body-lg mx-auto mt-3 max-w-[58ch] text-muted-foreground">
-          We design, build, and maintain practical data & AI systems -- from
-          foundations to advanced machine learning and custom software.
+          End-to-end data and AI capabilities, delivered as focused engagements
+          with clear scope and measurable outcomes.
         </p>
       </div>
 
@@ -69,10 +96,13 @@ export default function ServicesGrid() {
               i < pillars.length - 1 ? "border-b border-border" : ""
             }`}
           >
-            {/* Left: title + description */}
+            {/* Left: icon + title + description + CTA */}
             <div className="lg:w-2/5">
-              <h3 className="heading-3 text-foreground">{pillar.title}</h3>
-              <p className="body-sm mt-2 text-muted-foreground">
+              <div className="flex items-center gap-3">
+                {pillar.icon}
+                <h3 className="heading-3 text-foreground">{pillar.title}</h3>
+              </div>
+              <p className="body-sm mt-3 text-muted-foreground">
                 {pillar.description}
               </p>
               <a
@@ -86,29 +116,13 @@ export default function ServicesGrid() {
               </a>
             </div>
 
-            {/* Right: outcomes */}
+            {/* Right: bullet list */}
             <div className="lg:w-3/5">
-              <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2" role="list">
-                {pillar.outcomes.map((outcome) => (
-                  <li
-                    key={outcome}
-                    className="flex items-start gap-2.5 text-sm text-foreground"
-                  >
-                    <svg
-                      className="mt-0.5 h-4 w-4 shrink-0 text-brand"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M13.25 4.75L6 12 2.75 8.75"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    {outcome}
+              <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2" role="list">
+                {pillar.bullets.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-foreground">
+                    <CheckIcon />
+                    {item}
                   </li>
                 ))}
               </ul>

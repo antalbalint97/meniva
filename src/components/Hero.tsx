@@ -3,21 +3,21 @@ import { Button } from "@/components/ui/Button";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#E8F6F9] via-[#F2FAFB] to-[#FAFBFC]">
-      <div className="section-container relative flex min-h-[calc(100vh-64px)] flex-col items-center justify-center py-20 text-center lg:py-28">
+      <div className="section-container flex flex-col items-center justify-center py-24 text-center lg:py-32">
         <p className="body-sm mb-5 font-semibold uppercase tracking-widest text-brand">
-          DATA & AI SYSTEMS FOR MODERN TEAMS
+          {"DATA STRATEGY \u00B7 BI \u00B7 AI \u00B7 AUTOMATION"}
         </p>
 
         <h1 className="heading-1 mx-auto max-w-4xl text-balance text-foreground">
-          We build{" "}
-          <span className="text-brand">data & AI systems</span>{" "}
-          that actually run your business.
+          We Unblock Your{" "}
+          <span className="text-brand">Data Team</span>
         </h1>
 
-        <p className="body-lg mx-auto mt-6 max-w-[60ch] text-pretty text-muted-foreground">
-          From analytics foundations to production-ready machine learning and custom
-          internal tools, Meniva helps growing companies turn scattered data into
-          reliable systems that drive decisions and revenue.
+        <p className="body-lg mx-auto mt-6 max-w-[62ch] text-pretty text-muted-foreground">
+          We design and build practical analytics, automation, and AI systems
+          that remove bottlenecks — from KPI dashboards to production-grade
+          pipelines and lead-scoring software. Clear scope, fast delivery,
+          measurable impact.
         </p>
 
         <div className="mt-10">

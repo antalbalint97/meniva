@@ -2,12 +2,46 @@
 
 import Script from 'next/script';
 import Hero from '@/components/Hero';
+import ImpactMetrics from '@/components/ImpactMetrics';
 import ServicesGrid from '@/components/ServicesGrid';
-import TechStack from '@/components/TechStack';
+import TechTabs from '@/components/TechTabs';
 import DemoShowcase from '@/components/DemoShowcase';
-import WhyMeniva from '@/components/WhyMeniva';
 import ContactSection from '@/components/ContactSection';
+import FAQ from '@/components/FAQ';
 import { Card, CardContent } from '@/components/ui/Card';
+
+const faqs = [
+  {
+    question: 'Who are your typical clients?',
+    answer:
+      'We primarily work with SMEs and scale-ups across Europe that have outgrown spreadsheets but don\u2019t yet need a full in-house data team. Industries include e-commerce, logistics, SaaS, retail, and professional services.',
+  },
+  {
+    question: 'How long does a typical engagement take?',
+    answer:
+      'Most engagements run 2\u20136 weeks. A focused BI dashboard or automation project can be delivered in as little as 2 weeks. Larger ML or custom tool projects typically take 4\u20136 weeks.',
+  },
+  {
+    question: 'What does the process look like?',
+    answer:
+      'We start with a free discovery call to understand your data challenges. Then we deliver a clear scope and proposal. Once approved, we work in focused iterations with weekly check-ins and deliver production-ready systems.',
+  },
+  {
+    question: 'Do you work with our existing tools?',
+    answer:
+      'Yes. We integrate with whatever stack you already use \u2014 Power BI, Tableau, AWS, Azure, Google Cloud, Snowflake, dbt, Airflow, and more. We adapt to your environment rather than forcing a new one.',
+  },
+  {
+    question: 'What happens after delivery?',
+    answer:
+      'We provide documentation, training, and optional ongoing support. Our goal is to make your team self-sufficient. If you need continued help, we offer flexible retainer arrangements.',
+  },
+  {
+    question: 'How much does it cost?',
+    answer:
+      'Pricing depends on scope and complexity. Most engagements range from \u20AC3,000 to \u20AC15,000. We always provide a fixed-price proposal after the discovery call \u2014 no surprises.',
+  },
+];
 
 export default function Home() {
   const orgJsonLd = {
@@ -31,26 +65,22 @@ export default function Home() {
       {
         '@type': 'Service',
         name: 'Data Foundations & Analytics',
-        description:
-          'Data strategy, architecture, KPI frameworks, and BI dashboards.',
+        description: 'Data strategy, architecture, KPI frameworks, and BI dashboards.',
       },
       {
         '@type': 'Service',
-        name: 'Data Engineering & Automation',
-        description:
-          'ETL/ELT pipelines, data warehouses, and workflow orchestration.',
+        name: 'BI & Executive Dashboards',
+        description: 'Interactive dashboards and self-service analytics.',
       },
       {
         '@type': 'Service',
-        name: 'Machine Learning & AI Systems',
-        description:
-          'Forecasting, ML models, LLM agents, and MLOps pipelines.',
+        name: 'ML & Forecasting',
+        description: 'Forecasting, ML models, churn prediction, and MLOps.',
       },
       {
         '@type': 'Service',
-        name: 'Custom Internal Tools & Products',
-        description:
-          'Internal dashboards, Streamlit apps, and productized software.',
+        name: 'AI Automation & Agentic Systems',
+        description: 'LLM agents, automated workflows, and custom internal tools.',
       },
     ],
   };
@@ -61,40 +91,38 @@ export default function Home() {
         {JSON.stringify(orgJsonLd)}
       </Script>
 
-      <main className="min-h-screen scroll-smooth bg-gradient-to-b from-[#F2FAFB] via-[#FAFBFC] to-[#FAFBFC] font-sans text-foreground">
-        {/* Hero */}
+      <main className="min-h-screen scroll-smooth bg-[#FAFBFC] font-sans text-foreground">
+        {/* A) Hero */}
         <Hero />
 
-        {/* Services */}
+        {/* B) Impact Metrics */}
+        <section className="border-b border-border py-12 lg:py-16">
+          <ImpactMetrics />
+        </section>
+
+        {/* C) Services */}
         <section id="services" className="scroll-mt-28 section-padding">
           <div className="section-container">
             <ServicesGrid />
           </div>
         </section>
 
-        {/* Tech Stack */}
-        <section className="scroll-mt-28 py-16 lg:py-20">
-          <div className="section-container">
-            <TechStack />
-          </div>
-        </section>
-
-        {/* Demos */}
-        <section id="demos" className="scroll-mt-28 section-padding">
+        {/* D) Demos */}
+        <section id="demos" className="scroll-mt-28 section-padding border-t border-border">
           <div className="section-container">
             <DemoShowcase />
           </div>
         </section>
 
-        {/* Why Meniva */}
-        <section className="scroll-mt-28 py-16 lg:py-24">
+        {/* E) Technologies */}
+        <section className="scroll-mt-28 py-16 lg:py-24 border-t border-border">
           <div className="section-container">
-            <WhyMeniva />
+            <TechTabs />
           </div>
         </section>
 
         {/* Blog */}
-        <section id="blog" className="scroll-mt-28 py-16 lg:py-20">
+        <section id="blog" className="scroll-mt-28 py-16 lg:py-20 border-t border-border">
           <div className="section-container">
             <div className="text-center">
               <h2 className="heading-2 text-foreground">Latest Insights</h2>
@@ -115,11 +143,11 @@ export default function Home() {
                 <Card className="h-full transition-shadow group-hover:shadow-md">
                   <CardContent className="flex flex-col gap-2">
                     <h3 className="heading-4 text-foreground group-hover:text-brand transition-colors">
-                      {"Why SMEs in Europe Can't Ignore Data Strategy in 2025"}
+                      {"Why SMEs in Europe Can\u2019t Ignore Data Strategy in 2025"}
                     </h3>
                     <p className="body-sm text-muted-foreground">
-                      Data is no longer optional -- it{"'"}s a requirement for growth. Learn
-                      how SMEs can stay competitive with the right strategy.
+                      Data is no longer optional — it{"'"}s a requirement for growth.
+                      Learn how SMEs can stay competitive with the right strategy.
                     </p>
                     <span className="mt-1 text-sm font-medium text-brand">
                       {"Read more \u2192"}
@@ -142,8 +170,8 @@ export default function Home() {
                       Coming Soon: More Insights
                     </h3>
                     <p className="body-sm text-muted-foreground">
-                      Stay tuned for upcoming articles about business intelligence, AI
-                      adoption, and practical data strategies for SMEs.
+                      Stay tuned for upcoming articles about business intelligence,
+                      AI adoption, and practical data strategies for SMEs.
                     </p>
                     <span className="mt-1 text-sm font-medium text-brand">
                       {"Read more \u2192"}
@@ -155,10 +183,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" className="scroll-mt-28 section-padding">
+        {/* F) Contact */}
+        <section id="contact" className="scroll-mt-28 section-padding border-t border-border">
           <div className="section-container">
             <ContactSection />
+          </div>
+        </section>
+
+        {/* G) FAQ */}
+        <section id="faq" className="scroll-mt-28 section-padding border-t border-border">
+          <div className="section-container">
+            <FAQ faqs={faqs} injectJsonLd trackView />
           </div>
         </section>
       </main>

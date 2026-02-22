@@ -4,16 +4,48 @@ import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea, Label } from '@/components/ui/Input';
 
+function CheckBullet({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-center gap-2.5 text-sm text-foreground">
+      <svg className="h-4 w-4 shrink-0 text-brand" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      {children}
+    </li>
+  );
+}
+
 export default function ContactSection() {
   return (
     <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
-      {/* Left: copy */}
+      {/* Left: CTA block */}
       <div className="flex flex-1 flex-col justify-center">
-        <h2 className="heading-2 text-foreground">{"Let's Talk"}</h2>
+        <h2 className="heading-2 text-foreground">
+          Ready to unblock your data roadmap?
+        </h2>
         <p className="body-lg mt-3 max-w-[48ch] text-muted-foreground">
-          Tell us what you{"'"}re trying to build or fix. We{"'"}ll reply with next
-          steps within 24 hours.
+          Tell us what you{"'"}re trying to build or fix. We{"'"}ll reply with
+          a tailored proposal within 24 hours.
         </p>
+
+        <ul className="mt-6 flex flex-col gap-3" role="list">
+          <CheckBullet>Clear scope from day one</CheckBullet>
+          <CheckBullet>Automation-first approach</CheckBullet>
+          <CheckBullet>Measurable outcomes guaranteed</CheckBullet>
+        </ul>
+
+        <div className="mt-8">
+          <a
+            href="mailto:info@meniva.net?subject=Discovery%20call%20request"
+            data-gtag="cta"
+            data-cta="book_consultation"
+            data-location="contact_section"
+          >
+            <Button intent="accent" size="lg">
+              Book a Free Consultation
+            </Button>
+          </a>
+        </div>
       </div>
 
       {/* Right: form */}
@@ -35,7 +67,7 @@ export default function ContactSection() {
                 };
 
                 try {
-                  (window as any).gtag?.('event', 'contact_form_start', {
+                  (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'contact_form_start', {
                     form_id: 'contact',
                     method: 'contact_form',
                   });
@@ -47,7 +79,7 @@ export default function ContactSection() {
                   });
 
                   if (res.ok) {
-                    (window as any).gtag?.('event', 'generate_lead', {
+                    (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', {
                       method: 'contact_form',
                       form_id: 'contact',
                       time_to_submit_ms: Math.round(performance.now() - start),
@@ -56,20 +88,10 @@ export default function ContactSection() {
                       window.location.href = '/thank-you';
                     }, 150);
                   } else {
-                    (window as any).gtag?.('event', 'contact_form_error', {
-                      form_id: 'contact',
-                      method: 'contact_form',
-                      error_type: 'server_error',
-                    });
                     alert('Something went wrong. Please try again later.');
                   }
                 } catch (err) {
                   console.error('Contact form error:', err);
-                  (window as any).gtag?.('event', 'contact_form_error', {
-                    form_id: 'contact',
-                    method: 'contact_form',
-                    error_type: 'network_error',
-                  });
                   alert('Failed to send message. Please try again later.');
                 }
               }}
@@ -81,24 +103,12 @@ export default function ContactSection() {
 
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                />
+                <Input id="email" name="email" type="email" required placeholder="you@company.com" />
               </div>
 
               <div>
                 <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  required
-                  placeholder="Tell us about your data challenge..."
-                />
+                <Textarea id="message" name="message" rows={4} required placeholder="Tell us about your data challenge..." />
               </div>
 
               <Button
