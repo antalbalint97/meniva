@@ -122,6 +122,32 @@ export default function BlogArticleLayout({
           {"Let's Talk Strategy"}
         </a>
       </footer>
+
+      {/* Newsletter */}
+      <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-center">
+        <p className="mb-3 text-sm font-medium text-foreground">
+          Stay ahead with data insights. Get free strategies & updates in your inbox.
+        </p>
+        <form
+          className="flex flex-col sm:flex-row items-center justify-center gap-2"
+          action="/api/subscribe"
+          method="POST"
+        >
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Your email"
+            className="w-full sm:w-56 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/40"
+          />
+          <button
+            type="submit"
+            className="w-full sm:w-auto rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand/90"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
     </article>
   );
 }
