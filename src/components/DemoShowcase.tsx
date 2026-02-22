@@ -65,23 +65,7 @@ export default function DemoShowcase() {
               {...wrapperProps}
               className="group flex flex-col gap-4 rounded-xl border border-border bg-white p-5 shadow-sm transition-shadow hover:shadow-md sm:flex-row sm:items-center sm:gap-6"
             >
-              {/* Left: icon */}
-              <span
-                className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
-                  isLive ? "bg-brand/10" : "bg-muted"
-                }`}
-              >
-                <svg
-                  className={`h-5 w-5 ${isLive ? "text-brand" : "text-muted-foreground"}`}
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <circle cx="8" cy="8" r="4" />
-                </svg>
-              </span>
-
-              {/* Center: text + tags */}
+              {/* Text + tags */}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span

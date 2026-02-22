@@ -1,6 +1,5 @@
 'use client';
 
-import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea, Label } from '@/components/ui/Input';
 
@@ -36,7 +35,7 @@ const benefits = [
 
 export default function ContactSection() {
   return (
-    <div className="rounded-xl border border-border bg-white p-6 shadow-sm lg:p-10">
+    <div>
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
         {/* Left: CTA block */}
         <div className="flex flex-1 flex-col justify-center">
@@ -65,85 +64,83 @@ export default function ContactSection() {
 
         {/* Right: form */}
         <div className="flex-1">
-          <Card className="border-border">
-            <CardContent>
-              <form
-                className="flex flex-col gap-5"
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  const start = performance.now();
-                  const form = e.currentTarget as HTMLFormElement;
-                  const formData = new FormData(form);
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+            <form
+              className="flex flex-col gap-5"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const start = performance.now();
+                const form = e.currentTarget as HTMLFormElement;
+                const formData = new FormData(form);
 
-                  const body = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    message: formData.get('message'),
-                  };
+                const body = {
+                  name: formData.get('name'),
+                  email: formData.get('email'),
+                  message: formData.get('message'),
+                };
 
-                  try {
-                    (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'contact_form_start', {
-                      form_id: 'contact',
+                try {
+                  (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'contact_form_start', {
+                    form_id: 'contact',
+                    method: 'contact_form',
+                  });
+
+                  const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body),
+                  });
+
+                  if (res.ok) {
+                    (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', {
                       method: 'contact_form',
+                      form_id: 'contact',
+                      time_to_submit_ms: Math.round(performance.now() - start),
                     });
-
-                    const res = await fetch('/api/contact', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(body),
-                    });
-
-                    if (res.ok) {
-                      (window as unknown as Record<string, unknown> & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', {
-                        method: 'contact_form',
-                        form_id: 'contact',
-                        time_to_submit_ms: Math.round(performance.now() - start),
-                      });
-                      setTimeout(() => {
-                        window.location.href = '/thank-you';
-                      }, 150);
-                    } else {
-                      alert('Something went wrong. Please try again later.');
-                    }
-                  } catch (err) {
-                    console.error('Contact form error:', err);
-                    alert('Failed to send message. Please try again later.');
+                    setTimeout(() => {
+                      window.location.href = '/thank-you';
+                    }, 150);
+                  } else {
+                    alert('Something went wrong. Please try again later.');
                   }
-                }}
+                } catch (err) {
+                  console.error('Contact form error:', err);
+                  alert('Failed to send message. Please try again later.');
+                }
+              }}
+            >
+              <div>
+                <Label htmlFor="name">Name</Label>
+                <Input id="name" name="name" required placeholder="Your name" />
+              </div>
+
+              <div>
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" name="email" type="email" required placeholder="you@company.com" />
+              </div>
+
+              <div>
+                <Label htmlFor="message">Message</Label>
+                <Textarea id="message" name="message" rows={4} required placeholder="Tell us about your data challenge..." />
+              </div>
+
+              <p className="body-sm text-center text-muted-foreground italic">
+                We reply within 48 hours.
+              </p>
+
+              <Button
+                type="submit"
+                intent="accent"
+                size="lg"
+                full
+                data-gtag="cta"
+                data-cta="contact_form_submit"
+                data-location="contact_section"
               >
-                <div>
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" name="name" required placeholder="Your name" />
-                </div>
-
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" name="email" type="email" required placeholder="you@company.com" />
-                </div>
-
-                <div>
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" name="message" rows={4} required placeholder="Tell us about your data challenge..." />
-                </div>
-
-                <p className="body-sm text-center text-muted-foreground italic">
-                  We reply within 48 hours.
-                </p>
-
-                <Button
-                  type="submit"
-                  intent="accent"
-                  size="lg"
-                  full
-                  data-gtag="cta"
-                  data-cta="contact_form_submit"
-                  data-location="contact_section"
-                >
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+                Send Message
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

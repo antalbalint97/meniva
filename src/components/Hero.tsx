@@ -9,15 +9,15 @@ export default function Hero() {
         </p>
 
         <h1 className="heading-1 mx-auto max-w-4xl text-balance text-foreground">
-          We Unblock Your{" "}
-          <span className="text-brand">Data Team</span>
+          DATA & AI SYSTEMS FOR{" "}
+          <span className="text-brand">MODERN TEAMS</span>
         </h1>
 
         <p className="body-lg mx-auto mt-6 max-w-[62ch] text-pretty text-muted-foreground">
-          We design and build practical analytics, automation, and AI systems
-          that remove bottlenecks — from KPI dashboards to production-grade
-          pipelines and lead-scoring software. Clear scope, fast delivery,
-          measurable impact.
+          We build data & AI systems that actually run your business.
+          From analytics foundations to production-ready machine learning
+          and custom internal tools, Meniva helps growing companies turn
+          scattered data into reliable systems that drive decisions and revenue.
         </p>
 
         <div className="mt-10">
