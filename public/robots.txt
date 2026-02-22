@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://meniva.net
+
+# Sitemaps
+Sitemap: https://meniva.net/sitemap.xml

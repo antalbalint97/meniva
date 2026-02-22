@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Script from 'next/script';
-import { gtagEvent } from '@/components/GA'; // centralized analytics helper
+import { gtagEvent } from '@/components/GA';
 
 type FAQItem = {
   question: string;
@@ -35,13 +35,11 @@ export default function FAQ({
   const sectionRef = useRef<HTMLElement | null>(null);
   const viewedRef = useRef(false);
 
-  // Build stable ids for deep links & a11y
   const ids = useMemo(
     () => faqs.map((f, i) => `faq-${slugify(f.question) || `q-${i + 1}`}`),
     [faqs]
   );
 
-  // Optional JSON-LD
   const faqJsonLd = useMemo(
     () => ({
       '@context': 'https://schema.org',
@@ -73,7 +71,7 @@ export default function FAQ({
     }
   }, [ids, faqs]);
 
-  // One-time "view" event when section visible
+  // One-time view event
   useEffect(() => {
     if (!trackView || viewedRef.current || typeof window === 'undefined') return;
     const el = sectionRef.current;
@@ -86,14 +84,13 @@ export default function FAQ({
           viewedRef.current = true;
           gtagEvent('faq_section_view', {
             section_id: 'faq',
-            question_name: faqs.map(f => f.question).join(', '), // Return question names for analytics context
+            question_name: faqs.map((f) => f.question).join(', '),
           });
           io.disconnect();
         }
       },
       { threshold: [0.4] }
     );
-
     io.observe(el);
     return () => io.disconnect();
   }, [faqs.length, trackView]);
@@ -124,31 +121,55 @@ export default function FAQ({
   };
 
   return (
-    <section id="faq" ref={sectionRef} className="scroll-mt-28 px-6 md:px-20 py-20">
+    <section id="faq" ref={sectionRef} className="scroll-mt-28">
       {injectJsonLd && (
         <Script id={jsonLdId} type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify(faqJsonLd)}
         </Script>
       )}
 
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-10">{title}</h2>
+      <div className="text-center">
+        <h2 className="heading-2 text-foreground">{title}</h2>
+      </div>
 
-        <div className="space-y-4">
+      <div className="mx-auto mt-10 max-w-3xl">
+        <div className="flex flex-col gap-3">
           {faqs.map((faq, index) => {
             const id = ids[index];
             const isOpen = openIndex === index;
             const panelId = `${id}-panel`;
+
             return (
-              <div key={id} id={id} className="border-b pb-2">
+              <div
+                key={id}
+                id={id}
+                className={`rounded-xl border transition-colors ${
+                  isOpen ? 'border-brand/30 bg-brand-muted/40' : 'border-border bg-white'
+                }`}
+              >
                 <button
                   onClick={() => toggle(index)}
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  className="flex justify-between w-full text-left text-lg font-semibold hover:text-black focus:outline-none"
+                  className="flex w-full items-center justify-between px-6 py-4 text-left text-base font-semibold text-foreground transition hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <span>{faq.question}</span>
-                  <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
+                  <svg
+                    className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${
+                      isOpen ? 'rotate-180' : ''
+                    }`}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 7.5l5 5 5-5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </button>
 
                 {isOpen && (
@@ -156,7 +177,7 @@ export default function FAQ({
                     id={panelId}
                     role="region"
                     aria-labelledby={id}
-                    className="mt-2 text-gray-600"
+                    className="px-6 pb-4 text-sm leading-relaxed text-muted-foreground"
                   >
                     <p>{faq.answer}</p>
                   </div>
