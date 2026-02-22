@@ -1,52 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Script from 'next/script';
 import ServicesFlow from '../components/ServicesFlow';
 import AnimatedCredo from '../components/AnimatedCredo';
 import FAQ from '../components/FAQ';
-import ConsentBanner from "../components/ConsentBanner";
-import Image from "next/image";
-
-const NAV_HEIGHT = 72; // px
-
-const ScrollDown = ({ target = "#services" }: { target: string }) => (
-  <a
-    href={target}
-    aria-label="Scroll down"
-    data-gtag="cta"
-    data-cta="scroll_down"
-    data-location="hero"
-    className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full border border-gray-400 flex items-center justify-center hover:bg-gray-200 transition animate-bounce motion-reduce:animate-none"
-  >
-    <svg
-      className="w-6 h-6 text-gray-600"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
-  </a>
-);
+import Hero from "../components/Hero";
 
 export default function Home() {
-  const [stripHeight, setStripHeight] = useState(0);
-
-  // Dynamically measure campaign strip height
-  useEffect(() => {
-    const strip = document.getElementById("campaign-strip");
-    if (!strip) return;
-
-    const updateHeight = () => setStripHeight(strip.offsetHeight);
-    updateHeight();
-
-    const observer = new ResizeObserver(updateHeight);
-    observer.observe(strip);
-
-    return () => observer.disconnect();
-  }, []);
 
   // FAQ data
   const faqs = [
@@ -142,54 +103,9 @@ export default function Home() {
         {JSON.stringify(faqJsonLd)}
       </Script>
       
-      <main className="min-h-screen bg-white text-black font-sans scroll-smooth scroll-p-28">
+      <main className="min-h-screen scroll-smooth scroll-p-28 bg-background font-sans text-foreground">
         {/* Hero */}
-        <section
-          className="relative flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-4 sm:px-6 lg:px-8 gap-10"
-          style={{ minHeight: `calc(100vh - ${NAV_HEIGHT}px)` }}
-        >
-          {/* Left text */}
-          <div className="flex-1">
-            <h1 className="font-extrabold leading-tight tracking-tight text-[clamp(2rem,5.5vw,4.5rem)]">
-              <span className="block">Meaningful Data</span>
-              <span className="block">
-                Meaningful <span className="text-[#1E9EB8]">Growth</span>
-              </span>
-            </h1>
-
-            <p className="mt-6 text-gray-600 max-w-[60ch] mx-auto lg:mx-0 text-[clamp(1rem,1.25vw,1.25rem)]">
-              From raw data to custom tools and business systems, Meniva delivers
-              end-to-end solutions that turn complexity into clarity and action.
-              We help SMEs across Europe implement business intelligence and AI strategies that work.
-            </p>
-
-            <div className="mt-8">
-              <a
-                href="#services"
-                data-gtag="cta"
-                data-cta="explore_services"
-                data-location="hero"
-                className="inline-block bg-black text-white font-semibold px-6 py-3 rounded-md hover:bg-gray-800 transition text-[clamp(0.95rem,1vw,1.125rem)]"
-              >
-                Explore Our Services
-              </a>
-            </div>
-          </div>
-
-          {/* Right image */}
-          <div className="flex justify-center mt-8 md:mt-0 flex-1">
-            <Image
-              src="/meniva_logo_final.svg"
-              alt="AI brain graphic"
-              width={820}
-              height={820}
-              priority
-              sizes="(max-width: 1024px) 80vw, 560px"
-              className="h-auto w-[80vw] max-w-[800px] md:w-[800px] object-contain"
-            />
-          </div>
-                    
-        </section>
+        <Hero />
 
 
         {/* Services */}
