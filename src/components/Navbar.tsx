@@ -17,7 +17,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/50 bg-foreground/95 text-background backdrop-blur supports-[backdrop-filter]:bg-foreground/90">
+    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/90 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-white/70">
       <div className="section-container-wide flex items-center justify-between py-3">
         {/* Logo */}
         <Link href="/" scroll aria-label="Meniva home">
@@ -26,7 +26,7 @@ export default function Navbar() {
             alt="Meniva logo - data and AI consultancy for SMEs"
             width={120}
             height={50}
-            className="h-auto cursor-pointer brightness-0 invert"
+            className="h-auto cursor-pointer"
           />
         </Link>
 
@@ -39,7 +39,7 @@ export default function Navbar() {
             <a
               key={href}
               href={href}
-              className="text-background/70 transition hover:text-brand"
+              className="text-slate-700 transition hover:text-brand"
             >
               {label}
             </a>
@@ -61,7 +61,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="inline-flex items-center justify-center rounded-lg border border-background/20 p-2 text-background transition hover:bg-background/10 md:hidden"
+          className="inline-flex items-center justify-center rounded-lg border border-slate-300 p-2 text-slate-700 transition hover:bg-slate-100 md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -98,7 +98,7 @@ export default function Navbar() {
       {/* Mobile panel */}
       {open && (
         <nav
-          className="border-t border-background/10 bg-foreground px-6 pb-6 pt-4 md:hidden"
+          className="border-t border-slate-200/60 bg-white px-6 pb-6 pt-4 shadow-lg md:hidden"
           aria-label="Mobile navigation"
         >
           <div className="flex flex-col gap-4">
@@ -107,7 +107,7 @@ export default function Navbar() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="text-base text-background/70 transition hover:text-brand"
+                className="text-base text-slate-700 transition hover:text-brand"
               >
                 {label}
               </a>
