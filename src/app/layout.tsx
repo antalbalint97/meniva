@@ -163,7 +163,7 @@ export default function RootLayout({
                 alt="Meniva logo - data and AI consultancy for SMEs"
                 width={120}
                 height={50}
-                className="cursor-pointer"
+                className="h-auto cursor-pointer"
               />
             </Link>
 
