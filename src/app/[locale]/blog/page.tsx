@@ -15,7 +15,7 @@ type FrontMatter = {
 
 type PostMeta = FrontMatter & { slug: string };
 
-const BLOG_DIR = path.join(process.cwd(), "src", "app", "blog");
+const BLOG_DIR = path.join(process.cwd(), "src", "app", "[locale]", "blog");
 
 function titleCaseSlug(slug: string) {
   return slug

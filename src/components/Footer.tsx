@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ locale }: { locale?: string }) {
+  const currentLocale = locale ?? "en";
+
   const handleResetConsent = () => {
     localStorage.removeItem("consent");
     window.dispatchEvent(new Event("showConsentBanner"));
@@ -25,7 +27,7 @@ export default function Footer() {
 
           <div className="mt-4 flex flex-col gap-1">
             <Link
-              href="/privacy"
+              href={`/${currentLocale}/privacy`}
               className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
             >
               Privacy Policy
