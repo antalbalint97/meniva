@@ -1,9 +1,8 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 export default function Hero() {
   return (
-    <section className="relative grid-bg overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#050B10] via-[#07141C] to-[#02060A]">
       {/* Subtle brand gradient accent at top */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[480px]"
@@ -18,12 +17,12 @@ export default function Hero() {
         {/* Left: Copy */}
         <div className="flex-1 text-center lg:text-left">
           <p className="body-sm mb-4 font-semibold uppercase tracking-widest text-brand">
-            Data Strategy &middot; BI &middot; AI
+            EXPERT-LED DATA SPRINTS
           </p>
 
           <h1 className="heading-1 text-balance text-foreground">
             We Unblock Your{" "}
-            <span className="text-brand">Data Team</span>
+            <span className="bg-gradient-to-r from-[#2BBAD6] to-[#5EEAD4] bg-clip-text text-transparent">Data Team</span>
           </h1>
 
           <p className="body-lg mx-auto mt-6 max-w-[56ch] text-pretty text-muted-foreground lg:mx-0">
@@ -57,18 +56,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: Visual */}
-        <div className="flex flex-1 justify-center">
-          <Image
-            src="/meniva_logo_final.svg"
-            alt="Meniva data and AI illustration"
-            width={680}
-            height={680}
-            priority
-            sizes="(max-width: 1024px) 72vw, 480px"
-            className="h-auto w-[72vw] max-w-[600px] object-contain drop-shadow-lg lg:w-[480px]"
-          />
-        </div>
+
       </div>
 
       {/* Scroll indicator */}
