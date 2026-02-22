@@ -3,47 +3,13 @@
 import Script from 'next/script';
 import Hero from '@/components/Hero';
 import ServicesGrid from '@/components/ServicesGrid';
+import TechStack from '@/components/TechStack';
 import DemoShowcase from '@/components/DemoShowcase';
+import WhyMeniva from '@/components/WhyMeniva';
 import ContactSection from '@/components/ContactSection';
-import FAQ from '@/components/FAQ';
 import { Card, CardContent } from '@/components/ui/Card';
 
 export default function Home() {
-  // FAQ data
-  const faqs = [
-    {
-      question: 'What does Meniva do?',
-      answer:
-        'Meniva helps SMEs in Europe design data strategies, build BI dashboards, and implement AI agentic systems tailored to their needs.',
-    },
-    {
-      question: 'Who are your clients?',
-      answer:
-        'We work with small and medium-sized enterprises across Europe that want clarity from their data and practical AI adoption strategies.',
-    },
-    {
-      question: 'How do I start working with Meniva?',
-      answer:
-        'Simply contact us via our form or book a consultation call. We\'ll assess your current data maturity and propose a roadmap.',
-    },
-    {
-      question: 'Do I need a big budget to start with AI?',
-      answer:
-        'Not at all. We specialize in phased approaches for SMEs, starting small with safe pilots before scaling to larger systems.',
-    },
-    {
-      question: 'How long does a typical project take?',
-      answer:
-        'Depending on scope: Insight Phase ~2-3 weeks, Blueprint Phase ~4 weeks, Engine Phase 2-3 months.',
-    },
-    {
-      question: 'Do you provide training for teams?',
-      answer:
-        'Yes. We run workshops so your team can use BI tools and AI systems confidently.',
-    },
-  ];
-
-  // JSON-LD payloads
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -51,7 +17,7 @@ export default function Home() {
     url: 'https://meniva.net',
     logo: 'https://meniva.net/logo-meniva.png',
     description:
-      'Meniva helps SMEs in Europe with data strategy, BI dashboards, and AI agentic systems.',
+      'Meniva helps SMEs in Europe with data strategy, BI dashboards, and AI systems.',
     sameAs: [
       'https://linkedin.com/company/meniva-data',
       'https://facebook.com/menivadata',
@@ -64,46 +30,38 @@ export default function Home() {
     serviceOffered: [
       {
         '@type': 'Service',
-        name: 'Data Strategy',
+        name: 'Data Foundations & Analytics',
         description:
-          'Helping SMEs design scalable data strategies that support growth.',
+          'Data strategy, architecture, KPI frameworks, and BI dashboards.',
       },
       {
         '@type': 'Service',
-        name: 'Business Intelligence Dashboards',
+        name: 'Data Engineering & Automation',
         description:
-          'Building custom BI dashboards for clarity in decision-making.',
+          'ETL/ELT pipelines, data warehouses, and workflow orchestration.',
       },
       {
         '@type': 'Service',
-        name: 'AI Agentic Systems',
+        name: 'Machine Learning & AI Systems',
         description:
-          'Practical, safe implementation of AI agents tailored for SMEs.',
+          'Forecasting, ML models, LLM agents, and MLOps pipelines.',
+      },
+      {
+        '@type': 'Service',
+        name: 'Custom Internal Tools & Products',
+        description:
+          'Internal dashboards, Streamlit apps, and productized software.',
       },
     ],
   };
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(({ question, answer }) => ({
-      '@type': 'Question',
-      name: question,
-      acceptedAnswer: { '@type': 'Answer', text: answer },
-    })),
-  };
-
   return (
     <>
-      {/* JSON-LD for SEO */}
       <Script id="org-jsonld" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(orgJsonLd)}
       </Script>
-      <Script id="faq-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(faqJsonLd)}
-      </Script>
 
-      <main className="min-h-screen scroll-smooth bg-gradient-to-b from-[#F2FAFB] via-background to-background font-sans text-foreground">
+      <main className="min-h-screen scroll-smooth bg-gradient-to-b from-[#F2FAFB] via-[#FAFBFC] to-[#FAFBFC] font-sans text-foreground">
         {/* Hero */}
         <Hero />
 
@@ -114,6 +72,13 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Tech Stack */}
+        <section className="scroll-mt-28 py-16 lg:py-20">
+          <div className="section-container">
+            <TechStack />
+          </div>
+        </section>
+
         {/* Demos */}
         <section id="demos" className="scroll-mt-28 section-padding">
           <div className="section-container">
@@ -121,8 +86,15 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Why Meniva */}
+        <section className="scroll-mt-28 py-16 lg:py-24">
+          <div className="section-container">
+            <WhyMeniva />
+          </div>
+        </section>
+
         {/* Blog */}
-        <section id="blog" className="scroll-mt-28 py-14 lg:py-20">
+        <section id="blog" className="scroll-mt-28 py-16 lg:py-20">
           <div className="section-container">
             <div className="text-center">
               <h2 className="heading-2 text-foreground">Latest Insights</h2>
@@ -150,7 +122,7 @@ export default function Home() {
                       how SMEs can stay competitive with the right strategy.
                     </p>
                     <span className="mt-1 text-sm font-medium text-brand">
-                      Read more &rarr;
+                      {"Read more \u2192"}
                     </span>
                   </CardContent>
                 </Card>
@@ -174,7 +146,7 @@ export default function Home() {
                       adoption, and practical data strategies for SMEs.
                     </p>
                     <span className="mt-1 text-sm font-medium text-brand">
-                      Read more &rarr;
+                      {"Read more \u2192"}
                     </span>
                   </CardContent>
                 </Card>
@@ -187,13 +159,6 @@ export default function Home() {
         <section id="contact" className="scroll-mt-28 section-padding">
           <div className="section-container">
             <ContactSection />
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="scroll-mt-28 section-padding">
-          <div className="section-container">
-            <FAQ faqs={faqs} />
           </div>
         </section>
       </main>

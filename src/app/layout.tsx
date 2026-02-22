@@ -160,7 +160,7 @@ export default function RootLayout({
         <CampaignStrip />
 
         {/* ---------- Main Content ---------- */}
-        <main>{children}</main>
+        {children}
 
         {/* ---------- Footer ---------- */}
         <Footer />
