@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import Hero from '@/components/Hero';
-import ServicesFlow from '@/components/ServicesFlow';
+import ServicesGrid from '@/components/ServicesGrid';
 import DemoShowcase from '@/components/DemoShowcase';
 import ContactSection from '@/components/ContactSection';
 import FAQ from '@/components/FAQ';
@@ -110,7 +110,7 @@ export default function Home() {
         {/* Services */}
         <section id="services" className="scroll-mt-28 section-padding">
           <div className="section-container">
-            <ServicesFlow />
+            <ServicesGrid />
           </div>
         </section>
 

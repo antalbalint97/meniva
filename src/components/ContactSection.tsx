@@ -31,7 +31,7 @@ const valueProps = [
       </svg>
     ),
     title: 'Fast turnaround',
-    description: 'First sprint results in as little as 2-3 weeks.',
+    description: 'First results in as little as 2-3 weeks.',
   },
 ];
 

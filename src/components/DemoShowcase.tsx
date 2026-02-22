@@ -25,7 +25,7 @@ const demos = [
     slug: "pricing-dashboard",
     title: "Pricing Dashboard",
     description:
-      "Interactive BI dashboard built during a 2-week sprint. Filter by region, product category, and time period.",
+      "Interactive BI dashboard built during a 2-week engagement. Filter by region, product category, and time period.",
     tags: ["Dashboard", "BI", "Retail"],
     icon: (
       <svg className="h-8 w-8 text-brand" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -73,7 +73,7 @@ export default function DemoShowcase() {
       <div className="text-center">
         <h2 className="heading-2 text-foreground">See It in Action</h2>
         <p className="body-lg mx-auto mt-3 max-w-[48ch] text-muted-foreground">
-          Explore live demos and proof-of-concept tools built during real client sprints.
+          Explore live demos and proof-of-concept tools built during real client projects.
         </p>
       </div>
 

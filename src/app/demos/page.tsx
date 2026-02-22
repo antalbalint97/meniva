@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Demos | Meniva",
   description:
-    "Explore live demos and proof-of-concept tools built during real Meniva client sprints.",
+    "Explore live demos and proof-of-concept tools built during real Meniva client projects.",
 };
 
 const demos = [
@@ -21,7 +21,7 @@ const demos = [
     slug: "pricing-dashboard",
     title: "Pricing Dashboard",
     description:
-      "Interactive BI dashboard built during a 2-week sprint. Filter by region, product category, and time period.",
+      "Interactive BI dashboard built during a 2-week engagement. Filter by region, product category, and time period.",
     tags: ["Dashboard", "BI", "Retail"],
     status: "coming-soon" as const,
   },
@@ -59,7 +59,7 @@ export default function DemosPage() {
         <h1 className="heading-1 text-foreground">Demos</h1>
         <p className="body-lg mt-4 max-w-[52ch] text-muted-foreground">
           Explore live demos and proof-of-concept tools built during real client
-          sprints. Click any demo to see it in action.
+          projects. Click any demo to see it in action.
         </p>
 
         <div className="mt-14 flex flex-col gap-5">
