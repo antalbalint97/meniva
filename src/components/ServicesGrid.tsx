@@ -88,13 +88,11 @@ export default function ServicesGrid() {
         </p>
       </div>
 
-      <div className="mt-16 flex flex-col gap-0">
-        {pillars.map((pillar, i) => (
+      <div className="mt-16 flex flex-col gap-5">
+        {pillars.map((pillar) => (
           <div
             key={pillar.title}
-            className={`flex flex-col gap-6 py-12 lg:flex-row lg:items-start lg:gap-16 ${
-              i < pillars.length - 1 ? "border-b border-border" : ""
-            }`}
+            className="flex flex-col gap-6 rounded-xl border border-border bg-white p-6 shadow-sm lg:flex-row lg:items-start lg:gap-16 lg:p-8"
           >
             {/* Left: icon + title + description + CTA */}
             <div className="lg:w-2/5">

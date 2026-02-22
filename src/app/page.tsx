@@ -96,7 +96,7 @@ export default function Home() {
         <Hero />
 
         {/* B) Impact Metrics */}
-        <section className="border-b border-border py-12 lg:py-16">
+        <section className="py-12 lg:py-16">
           <ImpactMetrics />
         </section>
 
@@ -108,21 +108,21 @@ export default function Home() {
         </section>
 
         {/* D) Demos */}
-        <section id="demos" className="scroll-mt-28 section-padding border-t border-border">
+        <section id="demos" className="scroll-mt-28 section-padding">
           <div className="section-container">
             <DemoShowcase />
           </div>
         </section>
 
         {/* E) Technologies */}
-        <section className="scroll-mt-28 py-16 lg:py-24 border-t border-border">
+        <section className="scroll-mt-28 py-16 lg:py-24">
           <div className="section-container">
             <TechTabs />
           </div>
         </section>
 
         {/* Blog */}
-        <section id="blog" className="scroll-mt-28 py-16 lg:py-20 border-t border-border">
+        <section id="blog" className="scroll-mt-28 py-16 lg:py-20">
           <div className="section-container">
             <div className="text-center">
               <h2 className="heading-2 text-foreground">Latest Insights</h2>
@@ -184,14 +184,14 @@ export default function Home() {
         </section>
 
         {/* F) Contact */}
-        <section id="contact" className="scroll-mt-28 section-padding border-t border-border">
+        <section id="contact" className="scroll-mt-28 section-padding">
           <div className="section-container">
             <ContactSection />
           </div>
         </section>
 
         {/* G) FAQ */}
-        <section id="faq" className="scroll-mt-28 section-padding border-t border-border">
+        <section id="faq" className="scroll-mt-28 section-padding">
           <div className="section-container">
             <FAQ faqs={faqs} injectJsonLd trackView />
           </div>
