@@ -54,7 +54,7 @@ export default function BlogArticleLayout({
         </p>
         <a
           href="/#contact"
-          className="inline-block rounded-lg bg-foreground px-6 py-3 font-semibold text-white transition hover:bg-foreground/90"
+          className="inline-block rounded-lg bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand/90"
         >
           Book a Free Consultation
         </a>
@@ -117,11 +117,37 @@ export default function BlogArticleLayout({
       <footer className="mt-12 text-center">
         <a
           href="/#contact"
-          className="inline-block rounded-lg bg-foreground px-6 py-3 font-semibold text-white transition hover:bg-foreground/90"
+          className="inline-block rounded-lg bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand/90"
         >
           {"Let's Talk Strategy"}
         </a>
       </footer>
+
+      {/* Newsletter */}
+      <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-center">
+        <p className="mb-3 text-sm font-medium text-foreground">
+          Stay ahead with data insights. Get free strategies & updates in your inbox.
+        </p>
+        <form
+          className="flex flex-col sm:flex-row items-center justify-center gap-2"
+          action="/api/subscribe"
+          method="POST"
+        >
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Your email"
+            className="w-full sm:w-56 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/40"
+          />
+          <button
+            type="submit"
+            className="w-full sm:w-auto rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand/90"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
     </article>
   );
 }
