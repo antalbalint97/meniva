@@ -1,233 +1,218 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Card, CardContent } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import { gtagEvent } from '@/components/GA';
 
-// --- Data ---
-const steps = [
+/* ──────────────────────────────────────────────
+   Sprint Pack data
+   ────────────────────────────────────────────── */
+
+const sprints = [
   {
-    title: "Insight Phase",
-    subtitle: "Understand your data to spot hidden opportunities.",
-    phase: "Understand",
+    key: 'insight',
+    title: 'Insight Sprint',
+    value: 'Understand your data health and find quick wins.',
     deliverables: [
-      "✓ Data Quality Report",
-      "✓ Stakeholder Interviews (3 sessions)",
-      "✓ KPI Mapping to Business Goals",
+      'Data quality audit & report',
+      'Stakeholder interviews (3 sessions)',
+      'KPI mapping to business goals',
+      'Prioritized opportunity backlog',
     ],
-    benefits: [
-      "– A written summary of your data’s health",
-      "– A prioritized list of data opportunities",
-      "– Actionable KPIs for ongoing tracking",
-    ],
+    idealFor: 'Teams starting their data journey or inheriting messy systems.',
+    priority: 'understand',
   },
   {
-    title: "Blueprint Phase",
-    subtitle: "Build a strategy that aligns people, tech, and business goals.",
-    phase: "Plan",
+    key: 'blueprint',
+    title: 'Blueprint Sprint',
+    value: 'Design a strategy that aligns people, tech, and goals.',
     deliverables: [
-      "✓ Metric Framework",
-      "✓ Architecture Sketch",
-      "✓ Decision Mapping Workshop",
+      'Metric framework & decision map',
+      'Architecture sketch for scalable stack',
+      'Tool & vendor recommendation',
+      'Implementation roadmap (90-day)',
     ],
-    benefits: [
-      "– A clear data strategy aligned with business needs",
-      "– First version of a scalable data stack",
-      "– Guidance for future implementation",
-    ],
+    idealFor: 'Companies ready to move from ad-hoc reporting to a real data strategy.',
+    priority: 'understand',
   },
   {
-    title: "Engine Phase",
-    subtitle: "Build scalable and reliable data systems",
-    phase: "Build",
+    key: 'engine',
+    title: 'Engine Sprint',
+    value: 'Build reliable pipelines and scalable data infrastructure.',
     deliverables: [
-      "✓ ETL Pipeline Setup",
-      "✓ Data Validation System",
-      "✓ Model Infrastructure Boilerplate",
+      'ETL / ELT pipeline setup',
+      'Data validation & monitoring',
+      'Model infrastructure boilerplate',
+      'Documentation & runbooks',
     ],
-    benefits: [
-      "– Robust workflows with error handling",
-      "– Clean, validated data for ML usage",
-      "– Reusable infra for models",
-    ],
+    idealFor: 'Teams with a strategy who need execution on infrastructure.',
+    priority: 'scale',
   },
   {
-    title: "Test Phase",
-    subtitle: "Prototype AI solutions safely",
-    phase: "Test",
+    key: 'pilot',
+    title: 'AI Pilot Sprint',
+    value: 'Prototype an AI solution safely and measure real impact.',
     deliverables: [
-      "✓ Prototype ML Model",
-      "✓ MLOps Health Check",
-      "✓ Evaluation Report",
+      'Working ML proof of concept',
+      'Evaluation & bias report',
+      'MLOps health check',
+      'Business impact quantification',
     ],
-    benefits: [
-      "– A working ML proof of concept",
-      "– Recommendations for production-readiness",
-      "– Quantified business impact",
-    ],
+    idealFor: 'Teams exploring AI but want evidence before committing budget.',
+    priority: 'prove',
   },
   {
-    title: "Launch Phase",
-    subtitle: "Deploy AI into real environments",
-    phase: "Launch",
+    key: 'launch',
+    title: 'Launch Sprint',
+    value: 'Deploy AI into production with guardrails and monitoring.',
     deliverables: [
-      "✓ Integration with Product",
-      "✓ UX/User Journey Testing",
-      "✓ Monitoring Setup",
+      'Production integration',
+      'UX / user journey testing',
+      'Monitoring & alerting setup',
+      'Risk mitigation playbook',
     ],
-    benefits: [
-      "– Users interact with AI in production",
-      "– Risk mitigation with logging and alerts",
-      "– Confidence to scale usage",
-    ],
+    idealFor: 'Companies moving from a successful pilot to real users.',
+    priority: 'prove',
   },
   {
-    title: "Scale Phase",
-    subtitle: "Support long-term optimization and growth",
-    phase: "Scale",
+    key: 'scale',
+    title: 'Scale Sprint',
+    value: 'Optimize performance and build feedback loops for growth.',
     deliverables: [
-      "✓ Growth Metrics Dashboard",
-      "✓ System Tuning Report",
-      "✓ Feedback Loop Setup",
+      'Growth metrics dashboard',
+      'System tuning & cost optimization',
+      'Feedback loop setup',
+      'Team enablement workshop',
     ],
-    benefits: [
-      "– Track real business value",
-      "– Optimize model performance",
-      "– Capture user feedback for improvement",
-    ],
+    idealFor: 'Organizations with live AI systems ready to scale and improve.',
+    priority: 'scale',
   },
 ];
 
 const priorities = [
-  { key: 'understand', label: 'Understand my data', matches: ["Insight Phase", "Blueprint Phase", "Engine Phase"] },
-  { key: 'prove', label: 'Pilot AI safely', matches: ["Test Phase", "Launch Phase", "Insight Phase"] },
-  { key: 'scale', label: 'Scale our systems', matches: ["Launch Phase", "Scale Phase", "Engine Phase"] },
+  { key: 'all', label: 'All sprints' },
+  { key: 'understand', label: 'Understand my data' },
+  { key: 'prove', label: 'Pilot AI safely' },
+  { key: 'scale', label: 'Scale our systems' },
 ];
 
-export default function ServicesFlow() {
-  const [selected, setSelected] = useState('understand');
-  const [activeCard, setActiveCard] = useState<string | null>(null);
+/* ──────────────────────────────────────────────
+   Component
+   ────────────────────────────────────────────── */
 
-  const matchedSteps = steps.filter((step) =>
-    priorities.find((p) => p.key === selected)?.matches.includes(step.title)
-  );
+export default function ServicesFlow() {
+  const [selected, setSelected] = useState('all');
+
+  const filtered =
+    selected === 'all'
+      ? sprints
+      : sprints.filter((s) => s.priority === selected);
 
   // Track section visibility (once)
   useEffect(() => {
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
-
     const section = document.getElementById('services');
     if (!section) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
+        if (entries[0]?.isIntersecting) {
           gtagEvent('services_section_view', { location: 'home' });
           observer.disconnect();
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
-
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
 
-  // When user switches priority tabs
-  const handlePriorityClick = (key: string, label: string) => {
+  const handlePriority = (key: string, label: string) => {
     setSelected(key);
-    setActiveCard(null);
     gtagEvent('service_priority_change', { selected_priority: key, label });
   };
 
-  // When user clicks on a service card
-  const handleCardClick = (title: string) => {
-    setActiveCard(title);
-    gtagEvent('service_card_click', {
-      service_title: title,
-      selected_priority: selected,
-      location: 'services_section',
-    });
-  };
-
   return (
-    <section id="services" className="scroll-mt-28 py-14">
-      <div className="flex flex-col items-center px-4">
-        <h2 className="text-3xl font-bold text-center mb-6">How can Meniva Help?</h2>
-        <p className="text-center text-gray-500 mb-8">
-          Practical data strategy & AI adoption for SMEs — delivered step by step.
+    <>
+      <div className="text-center">
+        <h2 className="heading-2 text-foreground">How Can Meniva Help?</h2>
+        <p className="body-lg mx-auto mt-3 max-w-[52ch] text-muted-foreground">
+          Practical data strategy & AI adoption for SMEs -- delivered in focused sprints.
         </p>
-
-        {/* Priority Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {priorities.map((p) => (
-            <button
-              key={p.key}
-              onClick={() => handlePriorityClick(p.key, p.label)}
-              className={`px-6 py-2 rounded-full font-semibold border transition-colors duration-200
-                ${
-                  selected === p.key
-                    ? 'bg-black text-white border-black'
-                    : 'bg-white text-black border-black hover:bg-black hover:text-white'
-                }`}
-            >
-              {p.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Card Grid */}
-        <AnimatePresence mode="wait">
-          {selected && (
-            <motion.div
-              key={selected}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl"
-            >
-              {matchedSteps.map((step) => (
-                <motion.button
-                  key={step.title}
-                  onClick={() => handleCardClick(step.title)}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`p-6 rounded-2xl shadow-sm border text-left transition-all duration-200 ${
-                    activeCard === step.title
-                      ? 'border-[#1E9EB8] bg-[#E8F8FA] shadow-md'
-                      : 'border-gray-200 bg-white hover:shadow-md hover:border-[#1E9EB8]/60'
-                  }`}
-                >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">
-                    {step.phase}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-1">{step.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{step.subtitle}</p>
-
-                  <div className="mb-3">
-                    <h4 className="text-sm font-semibold mb-1">Deliverables:</h4>
-                    <ul className="text-gray-800 text-sm space-y-1">
-                      {step.deliverables.map((item, idx) => (
-                        <li key={idx}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold mb-1">You get:</h4>
-                    <ul className="text-gray-600 text-sm space-y-1">
-                      {step.benefits.map((item, idx) => (
-                        <li key={idx}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.button>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
-    </section>
+
+      {/* Priority pills */}
+      <div className="mt-10 flex flex-wrap justify-center gap-3">
+        {priorities.map((p) => (
+          <button
+            key={p.key}
+            onClick={() => handlePriority(p.key, p.label)}
+            className={`rounded-full border px-5 py-2 text-sm font-semibold transition-colors ${
+              selected === p.key
+                ? 'border-brand bg-brand text-brand-foreground'
+                : 'border-border bg-white text-foreground hover:border-brand hover:text-brand'
+            }`}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Sprint cards grid */}
+      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((sprint) => (
+          <Card key={sprint.key} className="flex flex-col justify-between">
+            <CardContent className="flex flex-1 flex-col gap-4">
+              <div>
+                <h3 className="heading-4 text-foreground">{sprint.title}</h3>
+                <p className="body-sm mt-1 text-muted-foreground">{sprint.value}</p>
+              </div>
+
+              <ul className="flex flex-col gap-1.5 text-sm text-foreground" role="list">
+                {sprint.deliverables.map((d, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <svg
+                      className="mt-0.5 h-4 w-4 shrink-0 text-brand"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M13.25 4.75L6 12 2.75 8.75"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="body-sm text-muted-foreground">
+                <span className="font-medium text-foreground">Ideal for:</span>{' '}
+                {sprint.idealFor}
+              </p>
+            </CardContent>
+
+            <div className="px-6 pb-6">
+              <a
+                href="/#contact"
+                data-gtag="cta"
+                data-cta="discuss_sprint"
+                data-location="services_section"
+                data-item={sprint.key}
+              >
+                <Button intent="ghost" size="sm" className="px-0 text-brand hover:underline">
+                  Discuss this sprint &rarr;
+                </Button>
+              </a>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </>
   );
 }

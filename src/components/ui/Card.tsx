@@ -1,6 +1,5 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-export * from "./Card";
 
 /* ──────────────────────────────────────────────
    Card — Cyber-Enterprise surface primitive

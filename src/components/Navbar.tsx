@@ -17,7 +17,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/90 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-white/70">
+    <header className="sticky top-0 z-40 border-b border-border bg-white shadow-sm">
       <div className="section-container-wide flex items-center justify-between py-3">
         {/* Logo */}
         <Link href="/" scroll aria-label="Meniva home">
