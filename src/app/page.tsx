@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import Hero from '@/components/Hero';
 import ServicesFlow from '@/components/ServicesFlow';
-import CaseStudies from '@/components/CaseStudies';
+import DemoShowcase from '@/components/DemoShowcase';
 import ContactSection from '@/components/ContactSection';
 import FAQ from '@/components/FAQ';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -114,10 +114,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Demos & Case Studies (replaces "Our Mission") */}
-        <section id="about" className="scroll-mt-28 section-padding">
+        {/* Demos */}
+        <section id="demos" className="scroll-mt-28 section-padding">
           <div className="section-container">
-            <CaseStudies />
+            <DemoShowcase />
           </div>
         </section>
 
