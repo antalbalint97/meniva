@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
 import GA from "@/components/GA";
 import ConsentBanner from "@/components/ConsentBanner";
 import Footer from "@/components/Footer";
-import CampaignStrip from "@/components/CampaignStrip";
+
+import Navbar from "@/components/Navbar";
 import { Suspense } from "react";
 
 const geistSans = Geist({
@@ -144,7 +143,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground font-sans`}
       >
         {/* ---------- Global GA Page Tracking ---------- */}
         <Suspense fallback={null}>
@@ -155,72 +154,10 @@ export default function RootLayout({
         <ConsentBanner />
 
         {/* ---------- Header ---------- */}
-        <header className="sticky top-0 z-40 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70">
-          <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
-            <Link href="/" scroll>
-              <Image
-                src="/logo-meniva-kek.png"
-                alt="Meniva logo - data and AI consultancy for SMEs"
-                width={120}
-                height={50}
-                className="cursor-pointer"
-              />
-            </Link>
-
-            {/* ---------- Desktop Navigation ---------- */}
-            <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-              <a
-                href="/#contact"
-                data-gtag="cta"
-                data-cta="book_consultation"
-                data-location="navbar"
-                className="inline-block rounded-lg bg-black px-4 py-2 text-white font-semibold hover:bg-neutral-800 transition"
-              >
-                Book a Free Consultation
-              </a>
-              <a href="/#services">Services</a>
-              <a href="/#about">About</a>
-              <a href="/#blog">Blog</a>
-              <a href="/#contact">Contact</a>
-              <a href="/#faq">FAQ</a>
-            </nav>
-
-            {/* ---------- Mobile Menu ---------- */}
-            <details className="relative md:hidden">
-              <summary
-                className="list-none p-2 -mr-2 rounded-md border border-gray-300 flex items-center justify-center cursor-pointer"
-                aria-label="Open menu"
-              >
-                <span className="sr-only">Open menu</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </summary>
-
-              <div className="absolute right-0 top-full mt-2 w-screen bg-white border-t shadow-lg p-6 rounded-b-2xl z-50">
-                <a
-                  href="/#contact"
-                  className="block bg-black text-white text-center font-semibold px-4 py-3 rounded-md hover:bg-neutral-800 transition mb-3"
-                >
-                  Book a Free Consultation
-                </a>
-                <nav className="flex flex-col space-y-3 text-gray-800 text-base">
-                  <a href="/#services">Services</a>
-                  <a href="/#about">About</a>
-                  <a href="/blog">Blog</a>
-                  <a href="/#contact">Contact</a>
-                  <a href="/#faq">FAQ</a>
-                </nav>
-              </div>
-            </details>
-          </div>
-        </header>
-
-        {/* ---------- Campaign Strip ---------- */}
-        <CampaignStrip />
+        <Navbar />
 
         {/* ---------- Main Content ---------- */}
-        <main>{children}</main>
+        {children}
 
         {/* ---------- Footer ---------- */}
         <Footer />
